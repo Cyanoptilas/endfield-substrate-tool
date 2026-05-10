@@ -1,0 +1,58 @@
+[
+  {
+    "id": "area_001",
+    "name": "枯れた荒野",
+    "chapter": "第1章",
+    "difficulty": "通常",
+    "possibleEffects": ["atk_flat", "atk_pct", "def_flat", "hp_flat", "spd"]
+  },
+  {
+    "id": "area_002",
+    "name": "廃工場地帯",
+    "chapter": "第1章",
+    "difficulty": "通常",
+    "possibleEffects": ["atk_pct", "crit_rate", "crit_dmg", "skill_dmg"]
+  },
+  {
+    "id": "area_003",
+    "name": "溶岩洞窟",
+    "chapter": "第2章",
+    "difficulty": "通常",
+    "possibleEffects": ["fire_dmg", "atk_pct", "crit_rate", "skill_dmg"]
+  },
+  {
+    "id": "area_004",
+    "name": "古代遺跡",
+    "chapter": "第2章",
+    "difficulty": "通常",
+    "possibleEffects": ["phys_dmg", "atk_flat", "crit_rate", "crit_dmg"]
+  },
+  {
+    "id": "area_005",
+    "name": "海底神殿",
+    "chapter": "第3章",
+    "difficulty": "通常",
+    "possibleEffects": ["water_dmg", "atk_pct", "spd", "crit_rate"]
+  },
+  {
+    "id": "area_006",
+    "name": "嵐の峠",
+    "chapter": "第3章",
+    "difficulty": "通常",
+    "possibleEffects": ["elec_dmg", "crit_dmg", "skill_dmg", "atk_pct"]
+  },
+  {
+    "id": "area_007",
+    "name": "廃都市中枢",
+    "chapter": "第4章",
+    "difficulty": "通常",
+    "possibleEffects": ["def_pct", "hp_pct", "resistance", "hp_flat"]
+  },
+  {
+    "id": "area_008",
+    "name": "廃都市中枢【強】",
+    "chapter": "第4章",
+    "difficulty": "強化",
+    "possibleEffects": ["def_pct", "hp_pct", "resistance", "def_flat", "hp_flat"]
+  }
+]
