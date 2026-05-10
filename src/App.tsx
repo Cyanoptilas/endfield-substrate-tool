@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useSimulatorStore } from './store/simulatorStore';
 import { calcAreaScores } from './lib/scoring';
 import { WeaponCard } from './components/WeaponCard';
@@ -13,8 +13,21 @@ const weapons = weaponsData as Weapon[];
 const areas = areasData as Area[];
 const effects = effectsData as Effect[];
 
+const CATEGORIES = ['すべて', ...Array.from(new Set(weapons.map((w) => w.category)))];
+
 export default function App() {
   const { selectedWeaponIds, toggleWeapon, clearAll } = useSimulatorStore();
+  const [categoryFilter, setCategoryFilter] = useState('すべて');
+
+  const skillEffectMap = useMemo(
+    () => new Map(effects.filter((e) => e.category === 'skill').map((e) => [e.id, e])),
+    [],
+  );
+
+  const filteredWeapons = useMemo(
+    () => (categoryFilter === 'すべて' ? weapons : weapons.filter((w) => w.category === categoryFilter)),
+    [categoryFilter],
+  );
 
   const selectedWeapons = useMemo(
     () => weapons.filter((w) => selectedWeaponIds.has(w.id)),
@@ -32,17 +45,18 @@ export default function App() {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-xl font-bold">エンドフィールド 基質厳選シミュレーター</h1>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            武器を選択すると、同時厳選に最適なエリアを表示します
+            武器を複数選択 → 同時厳選に最適なエリアをスコア順で表示
           </p>
         </div>
       </header>
 
       <main className="max-w-4xl mx-auto px-4 py-6 space-y-8">
+        {/* Weapon selection */}
         <section>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-semibold">
-              武器を選択{' '}
-              <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+              武器を選択
+              <span className="text-sm font-normal text-gray-500 dark:text-gray-400 ml-2">
                 ({selectedWeaponIds.size} 選択中)
               </span>
             </h2>
@@ -55,12 +69,30 @@ export default function App() {
               </button>
             )}
           </div>
+
+          {/* Category filter */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setCategoryFilter(cat)}
+                className={`text-sm px-3 py-1 rounded-full border transition-colors ${
+                  categoryFilter === cat
+                    ? 'bg-blue-500 border-blue-500 text-white'
+                    : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {weapons.map((weapon) => (
+            {filteredWeapons.map((weapon) => (
               <WeaponCard
                 key={weapon.id}
                 weapon={weapon}
-                effects={effects}
+                skillEffectMap={skillEffectMap}
                 selected={selectedWeaponIds.has(weapon.id)}
                 onToggle={() => toggleWeapon(weapon)}
               />
@@ -68,12 +100,13 @@ export default function App() {
           </div>
         </section>
 
+        {/* Results */}
         {selectedWeapons.length > 0 && (
           <section>
             <h2 className="text-lg font-semibold mb-4">
               おすすめ厳選エリア
               <span className="text-sm font-normal text-gray-500 dark:text-gray-400 ml-2">
-                (スコア順)
+                ({selectedWeapons.length} 武器 / スコア順)
               </span>
             </h2>
             {results.length === 0 ? (
@@ -83,7 +116,12 @@ export default function App() {
             ) : (
               <div className="space-y-3">
                 {results.map((result, i) => (
-                  <AreaResult key={result.area.id} result={result} rank={i + 1} />
+                  <AreaResult
+                    key={result.area.id}
+                    result={result}
+                    rank={i + 1}
+                    total={selectedWeapons.length}
+                  />
                 ))}
               </div>
             )}
@@ -93,7 +131,8 @@ export default function App() {
         {selectedWeapons.length === 0 && (
           <div className="text-center py-16 text-gray-400 dark:text-gray-600">
             <p className="text-4xl mb-3">⚔️</p>
-            <p className="text-lg">武器を選択してください</p>
+            <p className="text-lg">厳選したい武器を選択してください</p>
+            <p className="text-sm mt-1">複数選択で同時厳選の最適エリアを計算します</p>
           </div>
         )}
       </main>

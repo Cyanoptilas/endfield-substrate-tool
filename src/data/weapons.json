@@ -1,32 +1,31 @@
 [
-  {
-    "id": "weapon_001",
-    "name": "試作突撃銃Ⅰ",
-    "type": "assault_rifle",
-    "desiredEffects": ["atk_pct", "crit_rate", "crit_dmg"]
-  },
-  {
-    "id": "weapon_002",
-    "name": "試作狙撃銃Ⅰ",
-    "type": "sniper_rifle",
-    "desiredEffects": ["atk_pct", "crit_dmg", "skill_dmg"]
-  },
-  {
-    "id": "weapon_003",
-    "name": "試作拳銃Ⅰ",
-    "type": "handgun",
-    "desiredEffects": ["atk_pct", "spd", "crit_rate"]
-  },
-  {
-    "id": "weapon_004",
-    "name": "試作剣Ⅰ",
-    "type": "sword",
-    "desiredEffects": ["atk_flat", "crit_rate", "phys_dmg"]
-  },
-  {
-    "id": "weapon_005",
-    "name": "試作盾Ⅰ",
-    "type": "shield",
-    "desiredEffects": ["def_pct", "hp_pct", "resistance"]
-  }
+  { "id": "r6_001", "name": "遺忘",           "category": "アーツユニット", "rarity": 6, "skillEffect": "nightfall" },
+  { "id": "r6_002", "name": "騎士精神",       "category": "アーツユニット", "rarity": 6, "skillEffect": "healing" },
+  { "id": "r6_003", "name": "作品：蝕跡",     "category": "アーツユニット", "rarity": 6, "skillEffect": "domination" },
+  { "id": "r6_004", "name": "使命必達",       "category": "アーツユニット", "rarity": 6, "skillEffect": "pursuit" },
+  { "id": "r6_005", "name": "蒼星の囁き",     "category": "アーツユニット", "rarity": 6, "skillEffect": "enchantment" },
+  { "id": "r6_006", "name": "破壊ユニット",   "category": "アーツユニット", "rarity": 6, "skillEffect": "eruption" },
+  { "id": "r6_007", "name": "ナビゲーター",   "category": "拳銃",           "rarity": 6, "skillEffect": "enchantment" },
+  { "id": "r6_008", "name": "芸術の独裁者",   "category": "拳銃",           "rarity": 6, "skillEffect": "bonecut" },
+  { "id": "r6_009", "name": "同類共食",       "category": "拳銃",           "rarity": 6, "skillEffect": "enchantment" },
+  { "id": "r6_010", "name": "楔",             "category": "拳銃",           "rarity": 6, "skillEffect": "enchantment" },
+  { "id": "r6_011", "name": "望郷",           "category": "拳銃",           "rarity": 6, "skillEffect": "domination" },
+  { "id": "r6_012", "name": "落草",           "category": "拳銃",           "rarity": 6, "skillEffect": "eruption" },
+  { "id": "r6_013", "name": "クラヴェンガー", "category": "大剣",           "rarity": 6, "skillEffect": "eruption" },
+  { "id": "r6_014", "name": "鑑",             "category": "大剣",           "rarity": 6, "skillEffect": "domination" },
+  { "id": "r6_015", "name": "昔日の逸品",     "category": "大剣",           "rarity": 6, "skillEffect": "efficiency" },
+  { "id": "r6_016", "name": "大雷斑",         "category": "大剣",           "rarity": 6, "skillEffect": "healing" },
+  { "id": "r6_017", "name": "破砕君主",       "category": "大剣",           "rarity": 6, "skillEffect": "crush" },
+  { "id": "r6_018", "name": "J.E.T.",         "category": "長柄武器",       "rarity": 6, "skillEffect": "domination" },
+  { "id": "r6_019", "name": "負山",           "category": "長柄武器",       "rarity": 6, "skillEffect": "efficiency" },
+  { "id": "r6_020", "name": "勇猛",           "category": "長柄武器",       "rarity": 6, "skillEffect": "skillful" },
+  { "id": "r6_021", "name": "ダークトーチ",   "category": "片手剣",         "rarity": 6, "skillEffect": "enchantment" },
+  { "id": "r6_022", "name": "テルミット・カッター", "category": "片手剣",   "rarity": 6, "skillEffect": "circulation" },
+  { "id": "r6_023", "name": "フーヤオ",       "category": "片手剣",         "rarity": 6, "skillEffect": "nightfall" },
+  { "id": "r6_024", "name": "フレイムフォージ","category": "片手剣",        "rarity": 6, "skillEffect": "nightfall" },
+  { "id": "r6_025", "name": "輝かしき名声",   "category": "片手剣",         "rarity": 6, "skillEffect": "brutality" },
+  { "id": "r6_026", "name": "大願",           "category": "片手剣",         "rarity": 6, "skillEffect": "enchantment" },
+  { "id": "r6_027", "name": "白夜新星",       "category": "片手剣",         "rarity": 6, "skillEffect": "enchantment" },
+  { "id": "r6_028", "name": "不知帰",         "category": "片手剣",         "rarity": 6, "skillEffect": "circulation" },
+  { "id": "r6_029", "name": "栄光の記憶",     "category": "片手剣",         "rarity": 6, "skillEffect": "nightfall" }
 ]

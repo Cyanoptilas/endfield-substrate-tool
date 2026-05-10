@@ -7,30 +7,28 @@ export function calcAreaScores(
 ): AreaScore[] {
   if (selectedWeapons.length === 0) return [];
 
-  const effectMap = new Map(effects.map((e) => [e.id, e]));
-
-  // Union of all desired effects across selected weapons
-  const desiredEffectIds = new Set(
-    selectedWeapons.flatMap((w) => w.desiredEffects),
+  const skillEffectMap = new Map(
+    effects.filter((e) => e.category === 'skill').map((e) => [e.id, e]),
   );
+
+  const desiredSkillIds = new Set(selectedWeapons.map((w) => w.skillEffect));
 
   return areas
     .map((area) => {
-      const matchedEffectIds = area.possibleEffects.filter((id) =>
-        desiredEffectIds.has(id),
+      const matchedSkillEffectIds = area.skillEffects.filter((id) =>
+        desiredSkillIds.has(id),
       );
-      const matchedEffects = matchedEffectIds
-        .map((id) => effectMap.get(id))
+      const matchedSkillEffects = matchedSkillEffectIds
+        .map((id) => skillEffectMap.get(id))
         .filter((e): e is Effect => e !== undefined);
 
       const matchedWeapons = selectedWeapons.filter((w) =>
-        w.desiredEffects.some((id) => area.possibleEffects.includes(id)),
+        area.skillEffects.includes(w.skillEffect),
       );
 
-      // Score = matched effects count, bonus for covering more weapons
-      const score = matchedEffectIds.length + matchedWeapons.length * 0.1;
+      const score = matchedWeapons.length;
 
-      return { area, matchedEffects, score, matchedWeapons };
+      return { area, matchedSkillEffects, matchedWeapons, score };
     })
     .filter((r) => r.score > 0)
     .sort((a, b) => b.score - a.score);

@@ -1,58 +1,50 @@
 [
   {
-    "id": "area_001",
-    "name": "枯れた荒野",
-    "chapter": "第1章",
-    "difficulty": "通常",
-    "possibleEffects": ["atk_flat", "atk_pct", "def_flat", "hp_flat", "spd"]
+    "id": "central_area",
+    "name": "中枢エリア",
+    "nameEn": "Central Area",
+    "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
+    "additionalEffects": ["atk_up","fire_dmg","elec_dmg","cold_dmg","nature_dmg","arts_power","finisher_eff","arts_dmg"],
+    "skillEffects": ["assault","domination","pursuit","crush","skillful","eruption","circulation","efficiency"]
   },
   {
-    "id": "area_002",
-    "name": "廃工場地帯",
-    "chapter": "第1章",
-    "difficulty": "通常",
-    "possibleEffects": ["atk_pct", "crit_rate", "crit_dmg", "skill_dmg"]
+    "id": "originium_park",
+    "name": "源石研究パーク",
+    "nameEn": "Originium Park",
+    "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
+    "additionalEffects": ["atk_up","phys_dmg","elec_dmg","cold_dmg","nature_dmg","crit_rate","finisher_eff","arts_dmg"],
+    "skillEffects": ["domination","pursuit","exaltation","skillful","enchantment","healing","bonecut","efficiency"]
   },
   {
-    "id": "area_003",
-    "name": "溶岩洞窟",
-    "chapter": "第2章",
-    "difficulty": "通常",
-    "possibleEffects": ["fire_dmg", "atk_pct", "crit_rate", "skill_dmg"]
+    "id": "mine_area",
+    "name": "鉱山エリア",
+    "nameEn": "Mine Area",
+    "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
+    "additionalEffects": ["hp_up","phys_dmg","fire_dmg","cold_dmg","nature_dmg","crit_rate","arts_power","heal_eff"],
+    "skillEffects": ["assault","domination","skillful","brutality","enchantment","eruption","nightfall","efficiency"]
   },
   {
-    "id": "area_004",
-    "name": "古代遺跡",
-    "chapter": "第2章",
-    "difficulty": "通常",
-    "possibleEffects": ["phys_dmg", "atk_flat", "crit_rate", "crit_dmg"]
+    "id": "energy_highland",
+    "name": "エネルギー高地",
+    "nameEn": "Energy Highland",
+    "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
+    "additionalEffects": ["atk_up","hp_up","phys_dmg","fire_dmg","nature_dmg","crit_rate","arts_power","heal_eff"],
+    "skillEffects": ["pursuit","crush","exaltation","brutality","enchantment","healing","bonecut","circulation"]
   },
   {
-    "id": "area_005",
-    "name": "海底神殿",
-    "chapter": "第3章",
-    "difficulty": "通常",
-    "possibleEffects": ["water_dmg", "atk_pct", "spd", "crit_rate"]
+    "id": "wuling_city",
+    "name": "武陵城",
+    "nameEn": "Wuling City",
+    "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
+    "additionalEffects": ["atk_up","hp_up","elec_dmg","cold_dmg","finisher_eff","arts_dmg","heal_eff"],
+    "skillEffects": ["assault","crush","brutality","healing","bonecut","eruption","nightfall","circulation"]
   },
   {
-    "id": "area_006",
-    "name": "嵐の峠",
-    "chapter": "第3章",
-    "difficulty": "通常",
-    "possibleEffects": ["elec_dmg", "crit_dmg", "skill_dmg", "atk_pct"]
-  },
-  {
-    "id": "area_007",
-    "name": "廃都市中枢",
-    "chapter": "第4章",
-    "difficulty": "通常",
-    "possibleEffects": ["def_pct", "hp_pct", "resistance", "hp_flat"]
-  },
-  {
-    "id": "area_008",
-    "name": "廃都市中枢【強】",
-    "chapter": "第4章",
-    "difficulty": "強化",
-    "possibleEffects": ["def_pct", "hp_pct", "resistance", "def_flat", "hp_flat"]
+    "id": "qingbo_fort",
+    "name": "清波砦",
+    "nameEn": "Qingbo Fort",
+    "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
+    "additionalEffects": ["hp_up","phys_dmg","elec_dmg","cold_dmg","arts_power","finisher_eff","arts_dmg","heal_eff"],
+    "skillEffects": ["domination","crush","healing","bonecut","eruption","nightfall","exaltation","skillful"]
   }
 ]
