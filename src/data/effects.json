@@ -1,0 +1,16 @@
+[
+  { "id": "atk_flat", "name": "攻撃力+", "category": "atk" },
+  { "id": "atk_pct", "name": "攻撃力%", "category": "atk" },
+  { "id": "def_flat", "name": "防御力+", "category": "def" },
+  { "id": "def_pct", "name": "防御力%", "category": "def" },
+  { "id": "hp_flat", "name": "HP+", "category": "hp" },
+  { "id": "hp_pct", "name": "HP%", "category": "hp" },
+  { "id": "spd", "name": "速度+", "category": "spd" },
+  { "id": "crit_rate", "name": "会心率", "category": "crit_rate" },
+  { "id": "crit_dmg", "name": "会心ダメージ", "category": "crit_dmg" },
+  { "id": "skill_dmg", "name": "スキルダメージ", "category": "skill_dmg" },
+  { "id": "fire_dmg", "name": "炎ダメージ", "category": "elem_dmg" },
+  { "id": "water_dmg", "name": "水ダメージ", "category": "elem_dmg" },
+  { "id": "phys_dmg", "name": "物理ダメージ", "category": "elem_dmg" },
+  { "id": "elec_dmg", "name": "電気ダメージ", "category": "elem_dmg" }
+]

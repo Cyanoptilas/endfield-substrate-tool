@@ -1,0 +1,32 @@
+[
+  {
+    "id": "weapon_001",
+    "name": "試作突撃銃Ⅰ",
+    "type": "assault_rifle",
+    "desiredEffects": ["atk_pct", "crit_rate", "crit_dmg"]
+  },
+  {
+    "id": "weapon_002",
+    "name": "試作狙撃銃Ⅰ",
+    "type": "sniper_rifle",
+    "desiredEffects": ["atk_pct", "crit_dmg", "skill_dmg"]
+  },
+  {
+    "id": "weapon_003",
+    "name": "試作拳銃Ⅰ",
+    "type": "handgun",
+    "desiredEffects": ["atk_pct", "spd", "crit_rate"]
+  },
+  {
+    "id": "weapon_004",
+    "name": "試作剣Ⅰ",
+    "type": "sword",
+    "desiredEffects": ["atk_flat", "crit_rate", "phys_dmg"]
+  },
+  {
+    "id": "weapon_005",
+    "name": "試作盾Ⅰ",
+    "type": "shield",
+    "desiredEffects": ["def_pct", "hp_pct", "resistance"]
+  }
+]
