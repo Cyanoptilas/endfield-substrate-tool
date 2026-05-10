@@ -47,6 +47,21 @@ export default function App() {
       return next;
     });
 
+  const isFilterActive =
+    categoryFilter !== 'すべて' ||
+    rarityFilter !== 'all' ||
+    baseFilter !== 'all' ||
+    additionalFilter !== 'all' ||
+    skillFilter !== 'all';
+
+  const resetFilters = () => {
+    setCategoryFilter('すべて');
+    setRarityFilter('all');
+    setBaseFilter('all');
+    setAdditionalFilter('all');
+    setSkillFilter('all');
+  };
+
   const effectSetters: Record<string, (v: string | 'all') => void> = {
     base: setBaseFilter,
     additional: setAdditionalFilter,
@@ -117,13 +132,14 @@ export default function App() {
                 onClick={clearAll}
                 className="text-sm text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors ml-3"
               >
-                すべて解除
+                武器選択を解除
               </button>
             )}
           </div>
 
           {/* Category filter */}
-          <div className="flex flex-wrap items-center gap-2 mb-2">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <div className="flex flex-wrap items-center gap-2 flex-1">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
@@ -155,6 +171,15 @@ export default function App() {
                 {opt.label}
               </button>
             ))}
+            </div>
+            {isFilterActive && (
+              <button
+                onClick={resetFilters}
+                className="text-sm text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors shrink-0"
+              >
+                フィルターをリセット
+              </button>
+            )}
           </div>
 
           {/* Rarity filter */}
