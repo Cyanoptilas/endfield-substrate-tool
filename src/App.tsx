@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useSimulatorStore } from './store/simulatorStore';
-import { calcAreaScores } from './lib/scoring';
+import { calcAreaScores, calcCoFarmable } from './lib/scoring';
 import { WeaponCard } from './components/WeaponCard';
 import { AreaResult } from './components/AreaResult';
 import type { Weapon, Area, Effect } from './types';
@@ -37,6 +37,12 @@ export default function App() {
   const results = useMemo(
     () => calcAreaScores(selectedWeapons, areas),
     [selectedWeapons],
+  );
+
+  // 未選択の武器が同時厳選できるエリアのマップ
+  const coFarmableMap = useMemo(
+    () => calcCoFarmable(results, weapons, selectedWeaponIds),
+    [results, selectedWeaponIds],
   );
 
   return (
@@ -94,6 +100,7 @@ export default function App() {
                 weapon={weapon}
                 effectMap={effectMap}
                 selected={selectedWeaponIds.has(weapon.id)}
+                coFarmableAreas={coFarmableMap.get(weapon.id)}
                 onToggle={() => toggleWeapon(weapon)}
               />
             ))}
@@ -122,6 +129,9 @@ export default function App() {
                     rank={i + 1}
                     total={selectedWeapons.length}
                     effectMap={effectMap}
+                    allWeapons={weapons}
+                    selectedWeaponIds={selectedWeaponIds}
+                    onAddWeapon={(w) => toggleWeapon(w)}
                   />
                 ))}
               </div>

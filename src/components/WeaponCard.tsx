@@ -1,9 +1,10 @@
-import type { Weapon, Effect } from '../types';
+import type { Weapon, Effect, Area } from '../types';
 
 interface Props {
   weapon: Weapon;
   effectMap: Map<string, Effect>;
   selected: boolean;
+  coFarmableAreas?: Area[]; // エリア一覧（未選択かつ同時厳選可能な場合に渡される）
   onToggle: () => void;
 }
 
@@ -14,10 +15,12 @@ const RARITY_COLOR: Record<number, string> = {
   3: 'text-gray-400',
 };
 
-export function WeaponCard({ weapon, effectMap, selected, onToggle }: Props) {
+export function WeaponCard({ weapon, effectMap, selected, coFarmableAreas, onToggle }: Props) {
   const base       = effectMap.get(weapon.baseEffect);
   const additional = effectMap.get(weapon.additionalEffect);
   const skill      = effectMap.get(weapon.skillEffect);
+
+  const isCoFarmable = !selected && coFarmableAreas && coFarmableAreas.length > 0;
 
   return (
     <button
@@ -25,7 +28,9 @@ export function WeaponCard({ weapon, effectMap, selected, onToggle }: Props) {
       className={`w-full text-left rounded-xl border-2 p-3 transition-all cursor-pointer ${
         selected
           ? 'border-blue-500 bg-blue-50 dark:bg-blue-950'
-          : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600'
+          : isCoFarmable
+            ? 'border-green-400 dark:border-green-600 bg-white dark:bg-gray-800 hover:border-green-500'
+            : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600'
       }`}
     >
       <div className="flex items-start justify-between gap-2">
@@ -50,6 +55,19 @@ export function WeaponCard({ weapon, effectMap, selected, onToggle }: Props) {
           {skill?.name ?? weapon.skillEffect}
         </span>
       </div>
+
+      {isCoFarmable && (
+        <div className="mt-2 flex flex-wrap gap-1">
+          {coFarmableAreas.map((area) => (
+            <span
+              key={area.id}
+              className="text-xs px-1.5 py-0.5 rounded-full bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300"
+            >
+              ✓ {area.name}
+            </span>
+          ))}
+        </div>
+      )}
     </button>
   );
 }
