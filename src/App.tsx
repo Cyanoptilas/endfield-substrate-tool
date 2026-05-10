@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import { useSimulatorStore } from './store/simulatorStore';
 import { calcAreaScores, calcCoFarmable } from './lib/scoring';
+import { sortWeapons } from './lib/sorting';
+import type { SortOrder } from './lib/sorting';
 import { WeaponCard } from './components/WeaponCard';
 import { AreaResult } from './components/AreaResult';
 import type { Weapon, Area, Effect } from './types';
@@ -15,19 +17,26 @@ const effects = effectsData as Effect[];
 
 const CATEGORIES = ['すべて', ...Array.from(new Set(weapons.map((w) => w.category)))];
 
+const SORT_OPTIONS: { value: SortOrder; label: string }[] = [
+  { value: 'default',      label: 'デフォルト' },
+  { value: 'rarity-desc',  label: 'レア度↓' },
+  { value: 'rarity-asc',   label: 'レア度↑' },
+];
+
 export default function App() {
   const { selectedWeaponIds, toggleWeapon, clearAll } = useSimulatorStore();
   const [categoryFilter, setCategoryFilter] = useState('すべて');
+  const [sortOrder, setSortOrder] = useState<SortOrder>('default');
 
   const effectMap = useMemo(
     () => new Map(effects.map((e) => [e.id, e])),
     [],
   );
 
-  const filteredWeapons = useMemo(
-    () => (categoryFilter === 'すべて' ? weapons : weapons.filter((w) => w.category === categoryFilter)),
-    [categoryFilter],
-  );
+  const filteredWeapons = useMemo(() => {
+    const filtered = categoryFilter === 'すべて' ? weapons : weapons.filter((w) => w.category === categoryFilter);
+    return sortWeapons(filtered, sortOrder);
+  }, [categoryFilter, sortOrder]);
 
   const selectedWeapons = useMemo(
     () => weapons.filter((w) => selectedWeaponIds.has(w.id)),
@@ -76,8 +85,9 @@ export default function App() {
             )}
           </div>
 
-          {/* Category filter */}
-          <div className="flex flex-wrap gap-2 mb-4">
+          {/* Filters & sort */}
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            {/* Category */}
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
@@ -89,6 +99,24 @@ export default function App() {
                 }`}
               >
                 {cat}
+              </button>
+            ))}
+
+            {/* Separator */}
+            <span className="text-gray-300 dark:text-gray-600 select-none">|</span>
+
+            {/* Sort */}
+            {SORT_OPTIONS.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => setSortOrder(opt.value)}
+                className={`text-sm px-3 py-1 rounded-full border transition-colors ${
+                  sortOrder === opt.value
+                    ? 'bg-amber-500 border-amber-500 text-white'
+                    : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
+                }`}
+              >
+                {opt.label}
               </button>
             ))}
           </div>
