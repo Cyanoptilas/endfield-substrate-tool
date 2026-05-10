@@ -1,40 +1,33 @@
-export type EffectCategory =
-  | 'atk'
-  | 'def'
-  | 'hp'
-  | 'spd'
-  | 'skill_dmg'
-  | 'crit_rate'
-  | 'crit_dmg'
-  | 'elem_dmg'
-  | 'resistance'
-  | 'other';
+export type EffectCategory = 'base' | 'additional' | 'skill';
 
 export interface Effect {
   id: string;
   name: string;
+  nameEn: string;
   category: EffectCategory;
-  description?: string;
 }
 
 export interface Weapon {
   id: string;
   name: string;
-  type: string;
-  desiredEffects: string[]; // Effect IDs
+  category: string;
+  rarity: number;
+  baseEffect: string;
+  additionalEffect: string;
+  skillEffect: string;
 }
 
 export interface Area {
   id: string;
   name: string;
-  chapter: string;
-  difficulty?: string;
-  possibleEffects: string[]; // Effect IDs
+  nameEn: string;
+  baseEffects: string[];
+  additionalEffects: string[];
+  skillEffects: string[];
 }
 
 export interface AreaScore {
   area: Area;
-  matchedEffects: Effect[];
-  score: number;
   matchedWeapons: Weapon[];
+  score: number;
 }
