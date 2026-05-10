@@ -105,7 +105,7 @@ export default function App() {
       <main className="max-w-4xl mx-auto px-4 py-6 space-y-8">
         {/* Weapon selection */}
         <section>
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center mb-3">
             <h2 className="text-lg font-semibold">
               武器を選択
               <span className="text-sm font-normal text-gray-500 dark:text-gray-400 ml-2">
@@ -115,7 +115,7 @@ export default function App() {
             {selectedWeaponIds.size > 0 && (
               <button
                 onClick={clearAll}
-                className="text-sm text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors"
+                className="text-sm text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors ml-3"
               >
                 すべて解除
               </button>
