@@ -16,6 +16,7 @@ const areas = areasData as Area[];
 const effects = effectsData as Effect[];
 
 const CATEGORIES = ['すべて', ...Array.from(new Set(weapons.map((w) => w.category)))];
+const RARITIES = [6, 5, 4];
 
 const SORT_OPTIONS: { value: SortOrder; label: string }[] = [
   { value: 'default',      label: 'デフォルト' },
@@ -26,6 +27,7 @@ const SORT_OPTIONS: { value: SortOrder; label: string }[] = [
 export default function App() {
   const { selectedWeaponIds, toggleWeapon, clearAll } = useSimulatorStore();
   const [categoryFilter, setCategoryFilter] = useState('すべて');
+  const [rarityFilter, setRarityFilter] = useState<number | 'all'>('all');
   const [sortOrder, setSortOrder] = useState<SortOrder>('default');
 
   const effectMap = useMemo(
@@ -34,9 +36,13 @@ export default function App() {
   );
 
   const filteredWeapons = useMemo(() => {
-    const filtered = categoryFilter === 'すべて' ? weapons : weapons.filter((w) => w.category === categoryFilter);
+    const filtered = weapons.filter(
+      (w) =>
+        (categoryFilter === 'すべて' || w.category === categoryFilter) &&
+        (rarityFilter === 'all' || w.rarity === rarityFilter),
+    );
     return sortWeapons(filtered, sortOrder);
-  }, [categoryFilter, sortOrder]);
+  }, [categoryFilter, rarityFilter, sortOrder]);
 
   const selectedWeapons = useMemo(
     () => weapons.filter((w) => selectedWeaponIds.has(w.id)),
@@ -85,9 +91,8 @@ export default function App() {
             )}
           </div>
 
-          {/* Filters & sort */}
-          <div className="flex flex-wrap items-center gap-2 mb-4">
-            {/* Category */}
+          {/* Category filter */}
+          <div className="flex flex-wrap items-center gap-2 mb-2">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
@@ -117,6 +122,33 @@ export default function App() {
                 }`}
               >
                 {opt.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Rarity filter */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            <button
+              onClick={() => setRarityFilter('all')}
+              className={`text-sm px-3 py-1 rounded-full border transition-colors ${
+                rarityFilter === 'all'
+                  ? 'bg-blue-500 border-blue-500 text-white'
+                  : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
+              }`}
+            >
+              すべて
+            </button>
+            {RARITIES.map((r) => (
+              <button
+                key={r}
+                onClick={() => setRarityFilter(r)}
+                className={`text-sm px-3 py-1 rounded-full border transition-colors ${
+                  rarityFilter === r
+                    ? 'bg-blue-500 border-blue-500 text-white'
+                    : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
+                }`}
+              >
+                {'★'.repeat(r)}
               </button>
             ))}
           </div>
