@@ -36,7 +36,7 @@
     "name": "武陵城",
     "nameEn": "Wuling City",
     "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
-    "additionalEffects": ["atk_up","hp_up","elec_dmg","cold_dmg","finisher_eff","arts_dmg","heal_eff"],
+    "additionalEffects": ["atk_up","hp_up","elec_dmg","cold_dmg","crit_rate","finisher_eff","arts_dmg","heal_eff"],
     "skillEffects": ["assault","crush","brutality","healing","bonecut","eruption","nightfall","circulation"]
   },
   {
@@ -45,6 +45,14 @@
     "nameEn": "Qingbo Fort",
     "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
     "additionalEffects": ["hp_up","phys_dmg","elec_dmg","cold_dmg","arts_power","finisher_eff","arts_dmg","heal_eff"],
-    "skillEffects": ["domination","crush","healing","bonecut","eruption","nightfall","exaltation","skillful"]
+    "skillEffects": ["domination","crush","exaltation","skillful","healing","bonecut","eruption","nightfall"]
+  },
+  {
+    "id": "shouso",
+    "name": "首礎",
+    "nameEn": "Shouso",
+    "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
+    "additionalEffects": ["atk_up","phys_dmg","fire_dmg","elec_dmg","nature_dmg","crit_rate","finisher_eff","arts_dmg"],
+    "skillEffects": ["assault","pursuit","exaltation","brutality","enchantment","nightfall","circulation","efficiency"]
   }
 ]

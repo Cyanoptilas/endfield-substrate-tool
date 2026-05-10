@@ -19,8 +19,8 @@ export default function App() {
   const { selectedWeaponIds, toggleWeapon, clearAll } = useSimulatorStore();
   const [categoryFilter, setCategoryFilter] = useState('すべて');
 
-  const skillEffectMap = useMemo(
-    () => new Map(effects.filter((e) => e.category === 'skill').map((e) => [e.id, e])),
+  const effectMap = useMemo(
+    () => new Map(effects.map((e) => [e.id, e])),
     [],
   );
 
@@ -35,7 +35,7 @@ export default function App() {
   );
 
   const results = useMemo(
-    () => calcAreaScores(selectedWeapons, areas, effects),
+    () => calcAreaScores(selectedWeapons, areas),
     [selectedWeapons],
   );
 
@@ -92,7 +92,7 @@ export default function App() {
               <WeaponCard
                 key={weapon.id}
                 weapon={weapon}
-                skillEffectMap={skillEffectMap}
+                effectMap={effectMap}
                 selected={selectedWeaponIds.has(weapon.id)}
                 onToggle={() => toggleWeapon(weapon)}
               />
@@ -121,6 +121,7 @@ export default function App() {
                     result={result}
                     rank={i + 1}
                     total={selectedWeapons.length}
+                    effectMap={effectMap}
                   />
                 ))}
               </div>

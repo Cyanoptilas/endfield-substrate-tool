@@ -12,7 +12,9 @@ export interface Weapon {
   name: string;
   category: string;
   rarity: number;
-  skillEffect: string; // skill effect ID this weapon needs
+  baseEffect: string;
+  additionalEffect: string;
+  skillEffect: string;
 }
 
 export interface Area {
@@ -26,7 +28,6 @@ export interface Area {
 
 export interface AreaScore {
   area: Area;
-  matchedSkillEffects: Effect[];
   matchedWeapons: Weapon[];
   score: number;
 }
