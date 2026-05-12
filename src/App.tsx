@@ -265,6 +265,33 @@ export default function App() {
             })}
           </div>
 
+          {/* Rarity filter */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            <button
+              onClick={() => setRarityFilter('all')}
+              className={`text-sm px-3 py-1 rounded-full border transition-colors ${
+                rarityFilter === 'all'
+                  ? 'bg-blue-500 border-blue-500 text-white'
+                  : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
+              }`}
+            >
+              すべて
+            </button>
+            {RARITIES.map((r) => (
+              <button
+                key={r}
+                onClick={() => setRarityFilter(r)}
+                className={`text-sm px-3 py-1 rounded-full border transition-colors ${
+                  rarityFilter === r
+                    ? 'bg-blue-500 border-blue-500 text-white'
+                    : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
+                }`}
+              >
+                {'★'.repeat(r)}
+              </button>
+            ))}
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {filteredWeapons.map((weapon) => (
               <WeaponCard
