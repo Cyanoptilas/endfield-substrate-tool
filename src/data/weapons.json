@@ -62,7 +62,7 @@
   { "id": "w061", "name": "白夜新星",               "category": "片手剣",   "rarity": 6, "baseEffect": "main_up",     "additionalEffect": "arts_power",   "skillEffect": "enchantment" },
   { "id": "w062", "name": "破壊ユニット",           "category": "アーツ",   "rarity": 6, "baseEffect": "main_up",     "additionalEffect": "arts_power",   "skillEffect": "eruption" },
   { "id": "w063", "name": "同類共食",               "category": "拳銃",     "rarity": 6, "baseEffect": "main_up",     "additionalEffect": "arts_dmg",     "skillEffect": "enchantment" },
-  { "id": "w064", "name": "大剣 赤縁",              "category": "大剣",     "rarity": 6, "baseEffect": "strength_up", "additionalEffect": "atk_up",       "skillEffect": "skillful" },
+  { "id": "w064", "name": "赤縁",                    "category": "大剣",     "rarity": 6, "baseEffect": "strength_up", "additionalEffect": "atk_up",       "skillEffect": "skillful" },
   { "id": "w065", "name": "カーマインヴェール",     "category": "長柄武器", "rarity": 6, "baseEffect": "agility_up",  "additionalEffect": "fire_dmg",     "skillEffect": "circulation" },
   { "id": "w066", "name": "ファントムペイン",       "category": "大剣",     "rarity": 6, "baseEffect": "strength_up", "additionalEffect": "arts_power",   "skillEffect": "domination" },
   { "id": "w067", "name": "灯火の使命",             "category": "長柄武器", "rarity": 6, "baseEffect": "agility_up",  "additionalEffect": "finisher_eff", "skillEffect": "efficiency" }
