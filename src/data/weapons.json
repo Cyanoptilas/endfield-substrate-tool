@@ -65,5 +65,9 @@
   { "id": "w064", "name": "赤纓",                    "category": "大剣",     "rarity": 6, "baseEffect": "strength_up", "additionalEffect": "atk_up",       "skillEffect": "skillful" },
   { "id": "w065", "name": "カーマインヴェール",     "category": "長柄武器", "rarity": 6, "baseEffect": "agility_up",  "additionalEffect": "fire_dmg",     "skillEffect": "circulation" },
   { "id": "w066", "name": "ファントムペイン",       "category": "大剣",     "rarity": 6, "baseEffect": "strength_up", "additionalEffect": "arts_power",   "skillEffect": "domination" },
-  { "id": "w067", "name": "灯火の使命",             "category": "長柄武器", "rarity": 6, "baseEffect": "agility_up",  "additionalEffect": "finisher_eff", "skillEffect": "efficiency" }
+  { "id": "w067", "name": "灯火の使命",             "category": "長柄武器", "rarity": 6, "baseEffect": "agility_up",  "additionalEffect": "finisher_eff", "skillEffect": "efficiency" },
+  { "id": "w068", "name": "四二式・粛陣",           "category": "アーツ",   "rarity": 6, "baseEffect": "intel_up",    "additionalEffect": "finisher_eff", "skillEffect": "eruption" },
+  { "id": "w069", "name": "連結点",                 "category": "アーツ",   "rarity": 6, "baseEffect": "intel_up",    "additionalEffect": "finisher_eff", "skillEffect": "efficiency" },
+  { "id": "w070", "name": "プリズムナイトデビュー", "category": "長柄武器", "rarity": 6, "baseEffect": "will_up",     "additionalEffect": "heal_eff",     "skillEffect": "healing" },
+  { "id": "w071", "name": "黄金時代",               "category": "長柄武器", "rarity": 6, "baseEffect": "will_up",     "additionalEffect": "heal_eff",     "skillEffect": "pursuit" }
 ]
