@@ -78,5 +78,13 @@
     "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
     "additionalEffects": ["hp_up","phys_dmg","fire_dmg","nature_dmg","crit_rate","arts_power","arts_dmg","heal_eff"],
     "skillEffects": ["assault","domination","pursuit","crush","exaltation","enchantment","healing","efficiency"]
+  },
+  {
+    "id": "experimental_zone",
+    "name": "実験区域",
+    "nameEn": "Experimental Zone",
+    "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
+    "additionalEffects": ["hp_up","fire_dmg","elec_dmg","cold_dmg","nature_dmg","arts_power","finisher_eff","heal_eff"],
+    "skillEffects": ["domination","crush","skillful","brutality","enchantment","bonecut","nightfall","circulation"]
   }
 ]
