@@ -69,5 +69,6 @@
   { "id": "w068", "name": "四二式・粛陣",           "category": "アーツ",   "rarity": 6, "baseEffect": "intel_up",    "additionalEffect": "finisher_eff", "skillEffect": "eruption" },
   { "id": "w069", "name": "連結点",                 "category": "アーツ",   "rarity": 6, "baseEffect": "intel_up",    "additionalEffect": "finisher_eff", "skillEffect": "efficiency" },
   { "id": "w070", "name": "プリズムナイトデビュー", "category": "長柄武器", "rarity": 6, "baseEffect": "will_up",     "additionalEffect": "heal_eff",     "skillEffect": "healing" },
-  { "id": "w071", "name": "黄金時代",               "category": "長柄武器", "rarity": 6, "baseEffect": "will_up",     "additionalEffect": "heal_eff",     "skillEffect": "pursuit" }
+  { "id": "w071", "name": "黄金時代",               "category": "長柄武器", "rarity": 6, "baseEffect": "will_up",     "additionalEffect": "heal_eff",     "skillEffect": "pursuit" },
+  { "id": "w072", "name": "ファーサイト",           "category": "片手剣",   "rarity": 6, "baseEffect": "main_up",     "additionalEffect": "arts_power",   "skillEffect": "assault" }
 ]

@@ -54,5 +54,37 @@
     "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
     "additionalEffects": ["atk_up","phys_dmg","fire_dmg","elec_dmg","nature_dmg","crit_rate","finisher_eff","arts_dmg"],
     "skillEffects": ["assault","pursuit","exaltation","brutality","enchantment","nightfall","circulation","efficiency"]
+  },
+  {
+    "id": "sword_vault_dale",
+    "name": "蔵剣谷",
+    "nameEn": "Sword Vault Dale",
+    "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
+    "additionalEffects": ["atk_up","hp_up","phys_dmg","fire_dmg","cold_dmg","nature_dmg","arts_power","heal_eff"],
+    "skillEffects": ["assault","pursuit","exaltation","skillful","healing","bonecut","eruption","efficiency"]
+  },
+  {
+    "id": "yinglong_pass",
+    "name": "応龍関",
+    "nameEn": "Yinglong Pass",
+    "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
+    "additionalEffects": ["atk_up","phys_dmg","elec_dmg","cold_dmg","nature_dmg","crit_rate","arts_power","arts_dmg"],
+    "skillEffects": ["domination","pursuit","skillful","brutality","enchantment","eruption","circulation","efficiency"]
+  },
+  {
+    "id": "north_blockade_zone",
+    "name": "北部封鎖区域",
+    "nameEn": "Northern Blockade Zone",
+    "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
+    "additionalEffects": ["hp_up","phys_dmg","fire_dmg","nature_dmg","crit_rate","arts_power","arts_dmg","heal_eff"],
+    "skillEffects": ["assault","domination","pursuit","crush","exaltation","enchantment","healing","efficiency"]
+  },
+  {
+    "id": "experimental_zone",
+    "name": "実験区域",
+    "nameEn": "Experimental Zone",
+    "baseEffects": ["agility_up","strength_up","will_up","intel_up","main_up"],
+    "additionalEffects": ["hp_up","fire_dmg","elec_dmg","cold_dmg","nature_dmg","arts_power","finisher_eff","heal_eff"],
+    "skillEffects": ["domination","crush","skillful","brutality","enchantment","bonecut","nightfall","circulation"]
   }
 ]
