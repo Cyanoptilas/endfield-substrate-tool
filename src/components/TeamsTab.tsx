@@ -38,9 +38,15 @@ const AGREEMENT: Record<ReturnType<typeof agreementOf>, { label: string; short: 
 
 const SOURCES = [
   { label: 'Game8 最強編成とおすすめパーティ', url: 'https://game8.jp/arknights-endfield/757495' },
+  { label: 'Game8 物理属性のおすすめ編成', url: 'https://game8.jp/arknights-endfield/768083' },
+  { label: 'Game8 灼熱属性のおすすめ編成', url: 'https://game8.jp/arknights-endfield/767311' },
+  { label: 'Game8 寒冷属性のおすすめ編成', url: 'https://game8.jp/arknights-endfield/767239' },
+  { label: 'Game8 電磁属性のおすすめ編成', url: 'https://game8.jp/arknights-endfield/768039' },
+  { label: 'Game8 自然属性のおすすめ編成', url: 'https://game8.jp/arknights-endfield/802410' },
   { label: 'Game8 装備のキャラ別おすすめ一覧', url: 'https://game8.jp/arknights-endfield/771063' },
   { label: 'Game8 装備のセット効果一覧', url: 'https://game8.jp/arknights-endfield/758648' },
   { label: 'Game8 ダパンのおすすめ装備と武器・編成', url: 'https://game8.jp/arknights-endfield/687527' },
+  { label: 'Game8 プチエナのおすすめ装備と編成・武器', url: 'https://game8.jp/arknights-endfield/811012' },
   { label: 'AppMedia 最強パーティとおすすめ編成', url: 'https://appmedia.jp/arknights_endfield/79682426' },
 ];
 
@@ -183,7 +189,7 @@ export function TeamsTab({ characters, weaponMap, effectMap, gearMap, gearSetMap
           ))}
         </Box>
         <Typography variant="caption" color="text.secondary" component="p">
-          YouTube の解説動画は、どのキャラをメインに据えるかの裏取りに使用しています（スー・ミンホのメイン運用など）。
+          YouTube の解説動画は、どのキャラをメインに据えるかの裏取りに使用しています。
         </Typography>
       </Box>
     </Stack>

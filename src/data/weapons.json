@@ -75,5 +75,6 @@
   { "id": "w074", "name": "玉中身",                 "category": "大剣",     "rarity": 6, "baseEffect": "intel_up",    "additionalEffect": "cold_dmg",     "skillEffect": "efficiency" },
   { "id": "w075", "name": "悠久の継承",             "category": "大剣",     "rarity": 6, "baseEffect": "intel_up",    "additionalEffect": "cold_dmg",     "skillEffect": "efficiency" },
   { "id": "w076", "name": "問月",                   "category": "片手剣",   "rarity": 6, "baseEffect": "will_up",     "additionalEffect": "atk_up",       "skillEffect": "enchantment" },
-  { "id": "w077", "name": "複合工業",               "category": "片手剣",   "rarity": 6, "baseEffect": "will_up",     "additionalEffect": "elec_dmg",     "skillEffect": "eruption" }
+  { "id": "w077", "name": "複合工業",               "category": "片手剣",   "rarity": 6, "baseEffect": "will_up",     "additionalEffect": "elec_dmg",     "skillEffect": "eruption" },
+  { "id": "w078", "name": "スイーツタイム",         "category": "片手剣",   "rarity": 5, "baseEffect": "strength_up", "additionalEffect": "heal_eff",     "skillEffect": "healing" }
 ]
