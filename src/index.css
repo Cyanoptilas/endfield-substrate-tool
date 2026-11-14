@@ -1,10 +1,4 @@
-@import "tailwindcss";
-
+/* MUI のテーマ（src/theme.ts）が読み込まれる前から、OS のダークモードに合わせて描画する */
 :root {
   color-scheme: light dark;
-}
-
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
 }

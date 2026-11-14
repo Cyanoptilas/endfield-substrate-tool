@@ -1,4 +1,11 @@
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import type { AreaScore, Effect, Weapon } from '../types';
+import { fonts, rankSx, toneSx, toneTextSx, tokenSx } from '../theme';
+import { Tag } from './ui';
 
 interface Props {
   result: AreaScore;
@@ -9,8 +16,6 @@ interface Props {
   selectedWeaponIds: Set<string>;
   onAddWeapon: (weapon: Weapon) => void;
 }
-
-const RANK_STYLE = ['text-yellow-500', 'text-gray-400', 'text-amber-600'];
 
 export function AreaResult({
   result, rank, total, effectMap,
@@ -31,64 +36,76 @@ export function AreaResult({
   );
 
   return (
-    <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
-      <div className="flex items-start gap-3">
-        <span className={`text-2xl font-bold w-8 text-center shrink-0 ${RANK_STYLE[rank - 1] ?? 'text-gray-500'}`}>
+    <Paper sx={{ p: 2 }}>
+      <Stack direction="row" sx={{ alignItems: 'flex-start', gap: 1.5 }}>
+        <Typography
+          component="span"
+          sx={[
+            { fontFamily: fonts.mono, fontSize: '1.5rem', fontWeight: 500, width: 32, textAlign: 'center', flexShrink: 0, lineHeight: 1.2 },
+            rankSx(rank),
+          ]}
+        >
           {rank}
-        </span>
+        </Typography>
 
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <p className="font-semibold text-gray-900 dark:text-gray-100">{area.name}</p>
-            <span className="text-xs text-gray-400">{area.nameEn}</span>
-          </div>
+        <Box sx={{ flex: 1, minWidth: 0 }}>
+          <Stack direction="row" useFlexGap sx={{ alignItems: 'baseline', flexWrap: 'wrap', columnGap: 1 }}>
+            <Typography component="p" sx={{ fontWeight: 600 }}>{area.name}</Typography>
+            <Typography component="span" variant="caption" color="text.disabled">{area.nameEn}</Typography>
+          </Stack>
 
           {/* 一致した付加効果・スキル効果 */}
-          <div className="flex flex-wrap gap-1 mt-2">
+          <Stack direction="row" useFlexGap sx={{ flexWrap: 'wrap', gap: 0.5, mt: 1 }}>
             {[...additionalSet].map((id) => (
-              <span key={id} className="text-xs px-1.5 py-0.5 rounded bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300">
-                {effectMap.get(id)?.name ?? id}
-              </span>
+              <Tag key={id} tone="additional">{effectMap.get(id)?.name ?? id}</Tag>
             ))}
             {[...skillSet].map((id) => (
-              <span key={id} className="text-xs px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300">
-                {effectMap.get(id)?.name ?? id}
-              </span>
+              <Tag key={id} tone="skill">{effectMap.get(id)?.name ?? id}</Tag>
             ))}
-          </div>
+          </Stack>
 
           {/* 選択中の対応武器 */}
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 truncate">
+          <Typography component="p" variant="caption" color="text.secondary" noWrap sx={{ mt: 1 }}>
             {matchedWeapons.map((w) => w.name).join(' / ')}
-          </p>
+          </Typography>
 
           {/* 同時厳選できる未選択武器 */}
           {coFarmableWeapons.length > 0 && (
-            <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
-              <p className="text-xs text-green-600 dark:text-green-400 font-medium mb-1.5">
+            <Box sx={{ mt: 1.5, pt: 1.5, borderTop: 1, borderColor: 'divider' }}>
+              <Typography component="p" variant="caption" sx={[{ fontWeight: 600, mb: 1 }, toneTextSx('cofarm')]}>
                 同時厳選できる武器
-              </p>
-              <div className="flex flex-wrap gap-1.5">
+              </Typography>
+              <Stack direction="row" useFlexGap sx={{ flexWrap: 'wrap', gap: 1 }}>
                 {coFarmableWeapons.map((w) => (
-                  <button
+                  <Chip
                     key={w.id}
+                    size="small"
+                    variant="outlined"
+                    label={`+ ${w.name}`}
                     onClick={() => onAddWeapon(w)}
-                    className="text-xs px-2 py-1 rounded-full border border-green-400 dark:border-green-600 text-green-700 dark:text-green-300 hover:bg-green-50 dark:hover:bg-green-900/30 transition-colors"
-                  >
-                    + {w.name}
-                  </button>
+                    sx={[toneSx('cofarm', true), { bgcolor: 'transparent' }]}
+                  />
                 ))}
-              </div>
-            </div>
+              </Stack>
+            </Box>
           )}
-        </div>
+        </Box>
 
-        <div className="text-right shrink-0">
-          <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">{score}</p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">/{total} 武器</p>
-          <p className="text-xs text-gray-400">{pct}%</p>
-        </div>
-      </div>
-    </div>
+        <Box sx={{ textAlign: 'right', flexShrink: 0 }}>
+          <Typography
+            component="p"
+            sx={[{ fontFamily: fonts.mono, fontSize: '1.5rem', fontWeight: 500, lineHeight: 1.2 }, tokenSx((t) => ({ color: t.accentInk }))]}
+          >
+            {score}
+          </Typography>
+          <Typography component="p" variant="caption" color="text.secondary" sx={{ fontVariantNumeric: 'tabular-nums' }}>
+            /{total} 武器
+          </Typography>
+          <Typography component="p" variant="caption" color="text.disabled" sx={{ fontVariantNumeric: 'tabular-nums' }}>
+            {pct}%
+          </Typography>
+        </Box>
+      </Stack>
+    </Paper>
   );
 }
