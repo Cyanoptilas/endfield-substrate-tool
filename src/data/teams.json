@@ -1,0 +1,1455 @@
+[
+  {
+    "id": "typhoeus",
+    "name": "ティフォロス",
+    "elements": [
+      "自然"
+    ],
+    "teams": [
+      {
+        "id": "typhoeus-nature",
+        "label": "自然爆発編成",
+        "sources": [
+          "game8",
+          "appmedia"
+        ],
+        "summary": "意志オクギで自然付着を2段階まで素早く重ね、ティフォロスが付着を消費しながら自然爆発を連発する。リーノの増幅とペリカの感電でアーツダメージをさらに伸ばす。",
+        "members": [
+          {
+            "name": "ティフォロス",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w073"
+            ],
+            "gearSets": [
+              "天険",
+              "火山用"
+            ]
+          },
+          {
+            "name": "オクギ",
+            "role": "付着サポート",
+            "form": "意志",
+            "weaponIds": [
+              "w068"
+            ],
+            "gearSets": [
+              "清波",
+              "流転",
+              "火山用"
+            ]
+          },
+          {
+            "name": "ペリカ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w046"
+            ],
+            "gearSets": [
+              "流転",
+              "清波"
+            ]
+          },
+          {
+            "name": "リーノ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w070"
+            ],
+            "gearSets": [
+              "生物補助",
+              "流転"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "ペリカ",
+            "candidates": [
+              "ギルベルタ",
+              "アルデリア",
+              "アケクリ"
+            ]
+          },
+          {
+            "out": "リーノ",
+            "candidates": [
+              "ギルベルタ"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "okugi",
+    "name": "オクギ",
+    "elements": [
+      "自然"
+    ],
+    "note": "オクギは「陣訣・知」（知性型・アタッカー）と「陣訣・意」（意志型・サポート）で役割が変わる。ここは知性型をメインに据えた編成。意志型は他キャラの編成でサポートとして登場する。",
+    "teams": [
+      {
+        "id": "okugi-corrosion",
+        "label": "知性オクギ 腐食編成",
+        "sources": [
+          "game8",
+          "appmedia"
+        ],
+        "summary": "タンタンとザイヒの寒冷付着からオクギの必殺技で4段階腐食を作り、知性型オクギの火力を最大化する。リーノの範囲回復で耐久面も安定。",
+        "members": [
+          {
+            "name": "オクギ",
+            "role": "メイン火力",
+            "form": "知性",
+            "weaponIds": [
+              "w068"
+            ],
+            "gearSets": [
+              "火山用"
+            ]
+          },
+          {
+            "name": "タンタン",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w004"
+            ],
+            "gearSets": [
+              "清波"
+            ]
+          },
+          {
+            "name": "ザイヒ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w062",
+              "w033"
+            ],
+            "gearSets": [
+              "流転",
+              "知性盛り"
+            ]
+          },
+          {
+            "name": "リーノ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w070"
+            ],
+            "gearSets": [
+              "生物補助",
+              "流転"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "リーノ",
+            "candidates": [
+              "ギルベルタ",
+              "アケクリ",
+              "ペリカ",
+              "スノーシャイン"
+            ]
+          },
+          {
+            "out": "タンタン",
+            "candidates": [
+              "カミーユ",
+              "ウルフガード",
+              "ペリカ"
+            ]
+          },
+          {
+            "out": "ザイヒ",
+            "candidates": [
+              "ギルベルタ"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mifu",
+    "name": "ミ・フ",
+    "elements": [
+      "物理"
+    ],
+    "teams": [
+      {
+        "id": "mifu-crush",
+        "label": "クラッシュ物理編成",
+        "sources": [
+          "game8",
+          "appmedia"
+        ],
+        "summary": "チェンとミンホでクラッシュを素早く積み、ミ・フの猛撃で大ダメージを出す。ポグラニチニクのSP供給で戦技を回し続ける。単体の強敵・ボス戦向き。",
+        "members": [
+          {
+            "name": "ミ・フ",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w064"
+            ],
+            "gearSets": [
+              "旧鋒"
+            ]
+          },
+          {
+            "name": "チェン・センユー",
+            "role": "クラッシュ",
+            "weaponIds": [
+              "w060"
+            ],
+            "gearSets": [
+              "宏山点剣"
+            ]
+          },
+          {
+            "name": "ミンホ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w076"
+            ],
+            "gearSets": [
+              "パルス式"
+            ]
+          },
+          {
+            "name": "ポグラニチニク",
+            "role": "SPサポート",
+            "weaponIds": [
+              "w031",
+              "w030"
+            ],
+            "gearSets": [
+              "流転",
+              "パイオニア"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "ミンホ",
+            "candidates": [
+              "アルデリア",
+              "リーフォン",
+              "キャッチャー",
+              "エンバー"
+            ]
+          },
+          {
+            "out": "ポグラニチニク",
+            "candidates": [
+              "アケクリ",
+              "リーフォン"
+            ]
+          },
+          {
+            "out": "ミ・フ",
+            "candidates": [
+              "管理人",
+              "ダパン"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "minho",
+    "name": "ミンホ",
+    "elements": [
+      "電磁"
+    ],
+    "note": "Game8 はミンホをミ・フ編成の火力サポートとして扱っている。メイン運用は AppMedia と YouTube の解説動画で推されている。",
+    "teams": [
+      {
+        "id": "minho-arts",
+        "label": "電磁アーツ編成",
+        "sources": [
+          "appmedia"
+        ],
+        "summary": "ミンホで電磁付着し、意志オクギで付着段階を上げる。特殊感電4段階中にミンホとリーノの必殺技を重ねる。ローテーションが簡単で、単体ボスから複数戦まで対応できる。",
+        "members": [
+          {
+            "name": "ミンホ",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w076"
+            ],
+            "gearSets": [
+              "パルス式"
+            ]
+          },
+          {
+            "name": "オクギ",
+            "role": "付着サポート",
+            "form": "意志",
+            "weaponIds": [
+              "w068"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          },
+          {
+            "name": "ギルベルタ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w039"
+            ],
+            "gearSets": [
+              "宏山点剣"
+            ]
+          },
+          {
+            "name": "リーノ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w070"
+            ],
+            "gearSets": [
+              "生物補助"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "ギルベルタ",
+            "candidates": [
+              "アンタル"
+            ]
+          },
+          {
+            "out": "リーノ",
+            "candidates": [
+              "アンタル"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "zoan",
+    "name": "ゾアン・ファンイ",
+    "elements": [
+      "電磁"
+    ],
+    "teams": [
+      {
+        "id": "zoan-sp",
+        "label": "SP回転型",
+        "sources": [
+          "game8"
+        ],
+        "summary": "ペリカの感電付与とアークライトのSP回復でスキル回転を上げ、ゾアンの必殺技を早く回す。立ち上がりはやや遅いが、蒼雷剣を設置した後の殲滅力が高い。",
+        "members": [
+          {
+            "name": "ゾアン・ファンイ",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w029"
+            ],
+            "gearSets": [
+              "壌流"
+            ]
+          },
+          {
+            "name": "ペリカ",
+            "role": "付着サポート",
+            "weaponIds": [
+              "w048"
+            ],
+            "gearSets": [
+              "清波"
+            ]
+          },
+          {
+            "name": "アークライト",
+            "role": "SPサポート",
+            "weaponIds": [
+              "w005"
+            ],
+            "gearSets": [
+              "パイオニア"
+            ]
+          },
+          {
+            "name": "リーノ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w070"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "リーノ",
+            "candidates": [
+              "ギルベルタ",
+              "アレッシュ",
+              "アンタル",
+              "エンバー",
+              "アルデリア"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "zoan-okugi",
+        "label": "意志オクギ型",
+        "sources": [
+          "appmedia"
+        ],
+        "summary": "意志オクギで電磁付着の段階を上げ、SP消費の少ないリーノと合わせてゾアンの戦技と必殺技を回す。",
+        "members": [
+          {
+            "name": "ゾアン・ファンイ",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w029"
+            ],
+            "gearSets": [
+              "壌流"
+            ]
+          },
+          {
+            "name": "ペリカ",
+            "role": "付着サポート",
+            "weaponIds": [
+              "w048"
+            ],
+            "gearSets": [
+              "清波"
+            ]
+          },
+          {
+            "name": "オクギ",
+            "role": "付着サポート",
+            "form": "意志",
+            "weaponIds": [
+              "w068"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          },
+          {
+            "name": "リーノ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w070"
+            ],
+            "gearSets": [
+              "生物補助"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "オクギ",
+            "candidates": [
+              "アークライト",
+              "ギルベルタ"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "laevatain",
+    "name": "レーヴァテイン",
+    "elements": [
+      "灼熱"
+    ],
+    "teams": [
+      {
+        "id": "laevatain-heat",
+        "label": "灼熱付着型",
+        "sources": [
+          "game8"
+        ],
+        "summary": "カミーユの灼熱脆弱とSP回復、ウルフガードの連携技による灼熱付着でレーヴァテインの「劫火」を溜めやすくする。アンタルの灼熱増幅と脆弱で範囲殲滅力を上げる。",
+        "members": [
+          {
+            "name": "レーヴァテイン",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w045"
+            ],
+            "gearSets": [
+              "火山用"
+            ]
+          },
+          {
+            "name": "カミーユ",
+            "role": "SPサポート",
+            "weaponIds": [
+              "w065"
+            ],
+            "gearSets": [
+              "パイオニア"
+            ]
+          },
+          {
+            "name": "ウルフガード",
+            "role": "付着サポート",
+            "weaponIds": [
+              "w063"
+            ],
+            "gearSets": [
+              "清波"
+            ]
+          },
+          {
+            "name": "アンタル",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w046"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "アンタル",
+            "candidates": [
+              "アルデリア",
+              "ギルベルタ",
+              "エンバー"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "laevatain-su",
+        "label": "スー採用型",
+        "sources": [
+          "appmedia"
+        ],
+        "summary": "スーの付着を灼熱にするため、レーヴァテインを編成の1枠目に置く。必殺技中も遠くから安全にダメージを出せるスーと相性が良い。",
+        "members": [
+          {
+            "name": "レーヴァテイン",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w045"
+            ],
+            "gearSets": [
+              "火山用"
+            ]
+          },
+          {
+            "name": "スー",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w074"
+            ],
+            "gearSets": [
+              "50式応龍"
+            ]
+          },
+          {
+            "name": "カミーユ",
+            "role": "SPサポート",
+            "weaponIds": [
+              "w065"
+            ],
+            "gearSets": [
+              "パイオニア"
+            ]
+          },
+          {
+            "name": "オクギ",
+            "role": "付着サポート",
+            "form": "意志",
+            "weaponIds": [
+              "w068"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "カミーユ",
+            "candidates": [
+              "アケクリ"
+            ]
+          },
+          {
+            "out": "オクギ",
+            "candidates": [
+              "ウルフガード"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rossi",
+    "name": "ロッシ",
+    "elements": [
+      "灼熱",
+      "物理"
+    ],
+    "note": "灼熱と物理を使い分ける2属性アタッカー。",
+    "teams": [
+      {
+        "id": "rossi-arts",
+        "label": "アーツ特化型",
+        "sources": [
+          "game8"
+        ],
+        "summary": "ロッシの連携技でアーツ付着を消費して自己バフを得て、必殺技で高威力の灼熱ダメージを与える。タンタンのアーツ脆弱とギルベルタの集敵・バフで、ボス戦の瞬間火力が高い。",
+        "members": [
+          {
+            "name": "ロッシ",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w012"
+            ],
+            "gearSets": [
+              "M.I.警備"
+            ]
+          },
+          {
+            "name": "タンタン",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w004"
+            ],
+            "gearSets": [
+              "骨砕"
+            ]
+          },
+          {
+            "name": "ペリカ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w046"
+            ],
+            "gearSets": [
+              "パルス式"
+            ]
+          },
+          {
+            "name": "ギルベルタ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w039"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "ペリカ",
+            "candidates": [
+              "アルデリア",
+              "アンタル"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rossi-minho",
+        "label": "ミンホ電磁型",
+        "sources": [
+          "appmedia"
+        ],
+        "summary": "意志オクギで電磁付着の段階を増やし、アーツ脆弱状態の敵にロッシとミンホで大ダメージを与える。ロッシの連携技2段目の前に、ミンホの戦技で電磁付着を消費しておくのが運用のコツ。",
+        "members": [
+          {
+            "name": "ロッシ",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w012"
+            ],
+            "gearSets": [
+              "M.I.警備"
+            ]
+          },
+          {
+            "name": "ミンホ",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w076"
+            ],
+            "gearSets": [
+              "パルス式"
+            ]
+          },
+          {
+            "name": "オクギ",
+            "role": "付着サポート",
+            "form": "意志",
+            "weaponIds": [
+              "w068"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          },
+          {
+            "name": "ギルベルタ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w039"
+            ],
+            "gearSets": [
+              "宏山点剣"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "オクギ",
+            "candidates": [
+              "ミ・フ"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yvonne",
+    "name": "イヴォンヌ",
+    "elements": [
+      "寒冷"
+    ],
+    "teams": [
+      {
+        "id": "yvonne-freeze",
+        "label": "凍結コンボ型",
+        "sources": [
+          "game8"
+        ],
+        "summary": "意志オクギが集敵しながら自然付着を付与し、イヴォンヌの戦技で凍結させて必殺チャージを回収する。ザイヒとギルベルタのバフを乗せた必殺技でボスを一気に削る。",
+        "note": "Game8 の編成表はこの編成だけ武器・装備の並びに誤りがある（イヴォンヌにアーツ武器が割り当てられている）。メンバー構成のみ採用し、各キャラの武器・装備は他の編成と装備一覧ページの推奨で補った。",
+        "members": [
+          {
+            "name": "イヴォンヌ",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w050"
+            ],
+            "gearSets": [
+              "M.I.警備"
+            ]
+          },
+          {
+            "name": "オクギ",
+            "role": "付着サポート",
+            "form": "意志",
+            "weaponIds": [
+              "w068"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          },
+          {
+            "name": "ザイヒ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w033",
+              "w062"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          },
+          {
+            "name": "ギルベルタ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w039"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "ギルベルタ",
+            "candidates": [
+              "アルデリア",
+              "ペリカ",
+              "スノーシャイン"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "yvonne-cold",
+        "label": "スー採用 寒冷型",
+        "sources": [
+          "appmedia"
+        ],
+        "summary": "スー・タンタン・ザイヒで寒冷付着とバフ・デバフを重ねる寒冷特化編成。",
+        "members": [
+          {
+            "name": "イヴォンヌ",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w050"
+            ],
+            "gearSets": [
+              "M.I.警備"
+            ]
+          },
+          {
+            "name": "スー",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w074"
+            ],
+            "gearSets": [
+              "50式応龍"
+            ]
+          },
+          {
+            "name": "タンタン",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w004"
+            ],
+            "gearSets": [
+              "清波"
+            ]
+          },
+          {
+            "name": "ザイヒ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w033"
+            ],
+            "gearSets": [
+              "知性盛り"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "スー",
+            "candidates": [
+              "ギルベルタ",
+              "スノーシャイン"
+            ]
+          },
+          {
+            "out": "タンタン",
+            "candidates": [
+              "ペリカ"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lastlight",
+    "name": "ラストライト",
+    "elements": [
+      "寒冷"
+    ],
+    "teams": [
+      {
+        "id": "lastlight-tangtang",
+        "label": "タンタン型",
+        "sources": [
+          "game8"
+        ],
+        "summary": "ラストライトは寒冷付着を4段階まで溜めてから連携技を撃つのがおすすめ。付着の消費が少なくなるので、スーの必殺技は連携技CD短縮ではなくバフ目的で使う。",
+        "members": [
+          {
+            "name": "ラストライト",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w017"
+            ],
+            "gearSets": [
+              "満潮",
+              "火山用"
+            ]
+          },
+          {
+            "name": "スー",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w074"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          },
+          {
+            "name": "タンタン",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w004"
+            ],
+            "gearSets": [
+              "清波"
+            ]
+          },
+          {
+            "name": "オクギ",
+            "role": "火力サポート",
+            "form": "意志",
+            "weaponIds": [
+              "w068"
+            ],
+            "gearSets": [
+              "パイオニア"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "オクギ",
+            "candidates": [
+              "ザイヒ"
+            ]
+          },
+          {
+            "out": "タンタン",
+            "candidates": [
+              "ザイヒ"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "lastlight-zaihi",
+        "label": "ザイヒ型",
+        "sources": [
+          "appmedia"
+        ],
+        "summary": "ラストライトとスーの連携技火力を主軸にしたダブルアタッカー編成。必殺技に依存しないので、危機契約などWAVEのあるコンテンツでも息切れしにくい。",
+        "members": [
+          {
+            "name": "スー",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w074"
+            ],
+            "gearSets": [
+              "50式応龍"
+            ]
+          },
+          {
+            "name": "ラストライト",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w017"
+            ],
+            "gearSets": [
+              "満潮"
+            ]
+          },
+          {
+            "name": "オクギ",
+            "role": "付着サポート",
+            "form": "意志",
+            "weaponIds": [
+              "w068"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          },
+          {
+            "name": "ザイヒ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w033"
+            ],
+            "gearSets": [
+              "知性盛り"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "オクギ",
+            "candidates": [
+              "フローライト"
+            ]
+          },
+          {
+            "out": "スー",
+            "candidates": [
+              "スノーシャイン"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "su",
+    "name": "スー",
+    "elements": [
+      "寒冷"
+    ],
+    "note": "Game8 はスーをサブ火力（ラストライト編成のサポート）として扱っている。メイン運用は AppMedia と YouTube の解説動画の一部で紹介されている。",
+    "teams": [
+      {
+        "id": "su-cold",
+        "label": "スーメイン 寒冷編成",
+        "sources": [
+          "appmedia"
+        ],
+        "summary": "意志オクギの付着段階増加と、タンタン・ザイヒの豊富なバフ・デバフでスーの火力を伸ばす。操作が簡単で、コンテンツを選ばず使える。",
+        "members": [
+          {
+            "name": "スー",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w074"
+            ],
+            "gearSets": [
+              "50式応龍"
+            ]
+          },
+          {
+            "name": "オクギ",
+            "role": "付着サポート",
+            "form": "意志",
+            "weaponIds": [
+              "w068"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          },
+          {
+            "name": "タンタン",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w004"
+            ],
+            "gearSets": [
+              "清波"
+            ]
+          },
+          {
+            "name": "ザイヒ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w033"
+            ],
+            "gearSets": [
+              "知性盛り"
+            ]
+          }
+        ],
+        "substitutes": []
+      }
+    ]
+  },
+  {
+    "id": "endministrator",
+    "name": "管理人",
+    "elements": [
+      "物理"
+    ],
+    "teams": [
+      {
+        "id": "endmin-f2p",
+        "label": "無課金 物理編成",
+        "sources": [
+          "game8"
+        ],
+        "summary": "管理人とチェンで物理異常とブレイクを回す、配布・恒常キャラ中心の物理編成。",
+        "members": [
+          {
+            "name": "管理人",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w002"
+            ],
+            "gearSets": [
+              "宏山点剣"
+            ]
+          },
+          {
+            "name": "チェン・センユー",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w060"
+            ],
+            "gearSets": [
+              "宏山点剣"
+            ]
+          },
+          {
+            "name": "アケクリ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w030"
+            ],
+            "gearSets": [
+              "パイオニア"
+            ]
+          },
+          {
+            "name": "アルデリア",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w055"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "アケクリ",
+            "candidates": [
+              "ポグラニチニク",
+              "リーフォン"
+            ]
+          },
+          {
+            "out": "アルデリア",
+            "candidates": [
+              "エンバー",
+              "キャッチャー"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "endmin-starter",
+        "label": "配布キャラのみ（序盤向け）",
+        "sources": [
+          "appmedia"
+        ],
+        "summary": "序盤から入手しやすい金装備と、大願＋★5武器で組める入門編成。",
+        "members": [
+          {
+            "name": "管理人",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w002"
+            ],
+            "gearSets": [
+              "宏山点剣"
+            ]
+          },
+          {
+            "name": "チェン・センユー",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w008"
+            ],
+            "gearSets": [
+              "宏山点剣"
+            ]
+          },
+          {
+            "name": "ペリカ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w048"
+            ],
+            "gearSets": [
+              "パルス式"
+            ]
+          },
+          {
+            "name": "アルデリア",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w046"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          }
+        ],
+        "substitutes": []
+      },
+      {
+        "id": "endmin-minho",
+        "label": "ミンホ・ロッシ採用型",
+        "sources": [
+          "appmedia"
+        ],
+        "summary": "クラッシュ4段階までスムーズに溜め、特殊感電でダメージを上げてから管理人の戦技を叩き込む。管理人の枠はミ・フやダパンでも代用できる。",
+        "members": [
+          {
+            "name": "管理人",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w002"
+            ],
+            "gearSets": [
+              "宏山点剣"
+            ]
+          },
+          {
+            "name": "ミンホ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w076"
+            ],
+            "gearSets": [
+              "パルス式"
+            ]
+          },
+          {
+            "name": "ロッシ",
+            "role": "サブ火力",
+            "weaponIds": [
+              "w012"
+            ],
+            "gearSets": [
+              "M.I.警備"
+            ]
+          },
+          {
+            "name": "ギルベルタ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w039"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "管理人",
+            "candidates": [
+              "ミ・フ",
+              "ダパン"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dapan",
+    "name": "ダパン",
+    "elements": [
+      "物理"
+    ],
+    "teams": [
+      {
+        "id": "dapan-crush",
+        "label": "クラッシュ物理編成",
+        "sources": [
+          "game8"
+        ],
+        "summary": "ダパンは自分でクラッシュを消費して猛撃で大ダメージを出す。チェンとリーフォンでクラッシュを付与しながら戦う。武器はモチーフの千古恒常（★5）でも十分。",
+        "note": "Game8 は同じページで「ポグラニチニクはクラッシュを消費するので相性が悪い」とも書いており、記述が食い違っている。気になる場合は入替候補のアケクリを使う。",
+        "members": [
+          {
+            "name": "ダパン",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w023",
+              "w024"
+            ],
+            "gearSets": [
+              "旧鋒"
+            ]
+          },
+          {
+            "name": "チェン・センユー",
+            "role": "クラッシュ",
+            "weaponIds": [
+              "w013"
+            ],
+            "gearSets": [
+              "宏山点剣"
+            ]
+          },
+          {
+            "name": "ポグラニチニク",
+            "role": "SPサポート",
+            "weaponIds": [
+              "w030"
+            ],
+            "gearSets": [
+              "パイオニア"
+            ]
+          },
+          {
+            "name": "リーフォン",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w010"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "リーフォン",
+            "candidates": [
+              "アルデリア",
+              "キャッチャー",
+              "エンバー"
+            ]
+          },
+          {
+            "out": "ポグラニチニク",
+            "candidates": [
+              "アケクリ"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ivyena",
+    "name": "アイビーエナ",
+    "elements": [
+      "電磁"
+    ],
+    "teams": [
+      {
+        "id": "ivyena-sp",
+        "label": "SP回転型",
+        "sources": [
+          "game8"
+        ],
+        "summary": "低レア中心で組める電磁編成。アケクリとアークライトのSP回復で、アイビーエナの連携技から戦技へのコンボを回す。",
+        "members": [
+          {
+            "name": "アイビーエナ",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w057"
+            ],
+            "gearSets": [
+              "骨砕"
+            ]
+          },
+          {
+            "name": "アケクリ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w030"
+            ],
+            "gearSets": [
+              "パイオニア"
+            ]
+          },
+          {
+            "name": "ペリカ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w046"
+            ],
+            "gearSets": [
+              "パルス式"
+            ]
+          },
+          {
+            "name": "アークライト",
+            "role": "SPサポート",
+            "weaponIds": [
+              "w005"
+            ],
+            "gearSets": [
+              "パイオニア"
+            ]
+          }
+        ],
+        "substitutes": [
+          {
+            "out": "アークライト",
+            "candidates": [
+              "アンタル"
+            ]
+          },
+          {
+            "out": "アケクリ",
+            "candidates": [
+              "アンタル"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ivyena-buff",
+        "label": "リーノ・ギルベルタ型",
+        "sources": [
+          "appmedia"
+        ],
+        "summary": "ペリカの戦技で電磁付着し、連携技で電槍を設置。リーノとギルベルタのバフ・デバフで火力を出す。編成難度が低く、手持ちが揃っていない人向け。",
+        "members": [
+          {
+            "name": "アイビーエナ",
+            "role": "メイン火力",
+            "weaponIds": [
+              "w057"
+            ],
+            "gearSets": [
+              "骨砕"
+            ]
+          },
+          {
+            "name": "ペリカ",
+            "role": "付着サポート",
+            "weaponIds": [
+              "w048"
+            ],
+            "gearSets": [
+              "清波"
+            ]
+          },
+          {
+            "name": "ギルベルタ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w039"
+            ],
+            "gearSets": [
+              "流転"
+            ]
+          },
+          {
+            "name": "リーノ",
+            "role": "火力サポート",
+            "weaponIds": [
+              "w070"
+            ],
+            "gearSets": [
+              "生物補助"
+            ]
+          }
+        ],
+        "substitutes": []
+      }
+    ]
+  }
+]

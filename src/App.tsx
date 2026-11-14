@@ -5,15 +5,45 @@ import { sortWeapons } from './lib/sorting';
 import type { SortOrder } from './lib/sorting';
 import { WeaponCard } from './components/WeaponCard';
 import { AreaResult } from './components/AreaResult';
-import type { Weapon, Area, Effect } from './types';
+import { TeamsTab } from './components/TeamsTab';
+import { ChipRow, FilterChip, Tag } from './components/ui';
+import { Chevron } from './components/Chevron';
+import { tokenSx } from './theme';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ButtonBase from '@mui/material/ButtonBase';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import Typography from '@mui/material/Typography';
+import type { Weapon, Area, Effect, MainCharacter, CharacterGear, GearSet } from './types';
 
 import weaponsData from './data/weapons.json';
 import areasData from './data/areas.json';
 import effectsData from './data/effects.json';
+import teamsData from './data/teams.json';
+import gearBuildsData from './data/gearBuilds.json';
+import gearSetsData from './data/gearSets.json';
 
 const weapons = weaponsData as Weapon[];
 const areas = areasData as Area[];
 const effects = effectsData as Effect[];
+const characters = teamsData as MainCharacter[];
+
+const weaponMap = new Map(weapons.map((w) => [w.id, w]));
+const gearMap = new Map((gearBuildsData as CharacterGear[]).map((g) => [g.character, g]));
+const gearSetMap = new Map((gearSetsData as GearSet[]).map((s) => [s.name, s]));
+
+type TabValue = 'simulator' | 'teams';
+
+const TABS: { value: TabValue; label: string; description: string }[] = [
+  { value: 'simulator', label: '基質シミュレーター', description: '武器を複数選択 → 同時厳選に最適なエリアをスコア順で表示' },
+  { value: 'teams',     label: 'おすすめ編成',       description: 'メインキャラ別のおすすめ編成と装備（攻略サイトの比較）' },
+];
+
+const tabFromHash = (): TabValue => (window.location.hash === '#teams' ? 'teams' : 'simulator');
 
 const CATEGORIES = ['すべて', ...Array.from(new Set(weapons.map((w) => w.category)))];
 const RARITIES = [6, 5, 4];
@@ -31,7 +61,8 @@ const EFFECT_ACCORDIONS = [
 ] as const;
 
 export default function App() {
-  const { selectedWeaponIds, toggleWeapon, clearAll } = useSimulatorStore();
+  const { selectedWeaponIds, toggleWeapon, selectWeapons, clearAll } = useSimulatorStore();
+  const [tab, setTab] = useState<TabValue>(tabFromHash);
   const [categoryFilter, setCategoryFilter] = useState('すべて');
   const [rarityFilter, setRarityFilter] = useState<number | 'all'>('all');
   const [sortOrder, setSortOrder] = useState<SortOrder>('default');
@@ -61,6 +92,21 @@ export default function App() {
     setBaseFilter('all');
     setAdditionalFilter('all');
     setSkillFilter('all');
+  };
+
+  const changeTab = (next: TabValue) => {
+    setTab(next);
+    const url = window.location.pathname + window.location.search + (next === 'teams' ? '#teams' : '');
+    window.history.replaceState(null, '', url);
+  };
+
+  // 編成タブの武器をまとめて選択し、シミュレーターに切り替える。
+  // 武器フィルターが掛かっていると選んだ武器が一覧に出ないので解除しておく
+  const applyTeamWeapons = (weaponIds: string[]) => {
+    selectWeapons(weaponIds);
+    resetFilters();
+    changeTab('simulator');
+    window.scrollTo({ top: 0 });
   };
 
   const effectSetters: Record<string, (v: string | 'all') => void> = {
@@ -108,249 +154,183 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <header className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-xl font-bold">エンドフィールド 基質厳選シミュレーター</h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            武器を複数選択 → 同時厳選に最適なエリアをスコア順で表示
-          </p>
-        </div>
-      </header>
-
-      <main className="max-w-4xl mx-auto px-4 py-6 space-y-8">
-        {/* Weapon selection */}
-        <section>
-          <div className="flex items-center mb-3">
-            <h2 className="text-lg font-semibold">
-              武器を選択
-              <span className="text-sm font-normal text-gray-500 dark:text-gray-400 ml-2">
-                ({selectedWeaponIds.size} 選択中)
-              </span>
-            </h2>
-            {selectedWeaponIds.size > 0 && (
-              <button
-                onClick={clearAll}
-                className="text-sm text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors ml-3"
-              >
-                武器選択を解除
-              </button>
-            )}
-          </div>
-
-          {/* Category filter */}
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-            <div className="flex flex-wrap items-center gap-2 flex-1">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setCategoryFilter(cat)}
-                className={`text-sm px-3 py-1 rounded-full border transition-colors ${
-                  categoryFilter === cat
-                    ? 'bg-blue-500 border-blue-500 text-white'
-                    : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
-                }`}
-              >
-                {cat}
-              </button>
+    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', color: 'text.primary' }}>
+      <Box component="header" sx={{ borderBottom: 1, borderColor: 'divider', bgcolor: 'background.paper' }}>
+        <Container maxWidth="md" sx={{ pt: 3 }}>
+          <Typography variant="h1">エンドフィールド 基質厳選シミュレーター</Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+            {TABS.find((t) => t.value === tab)?.description}
+          </Typography>
+          <Tabs
+            value={tab}
+            onChange={(_, v: TabValue) => changeTab(v)}
+            textColor="inherit"
+            sx={[{ mt: 1.5, minHeight: 44 }, tokenSx((t) => ({ '--Tabs-indicator': t.accentInk }))]}
+            slotProps={{ indicator: { sx: { height: 3, bgcolor: 'var(--Tabs-indicator)' } } }}
+          >
+            {TABS.map((t) => (
+              <Tab key={t.value} value={t.value} label={t.label} disableRipple />
             ))}
+          </Tabs>
+        </Container>
+      </Box>
 
-            {/* Separator */}
-            <span className="text-gray-300 dark:text-gray-600 select-none">|</span>
+      <Container component="main" maxWidth="md" sx={{ py: 3 }} hidden={tab !== 'teams'}>
+        <TeamsTab
+          characters={characters}
+          weaponMap={weaponMap}
+          effectMap={effectMap}
+          gearMap={gearMap}
+          gearSetMap={gearSetMap}
+          onUseTeamWeapons={applyTeamWeapons}
+        />
+      </Container>
 
-            {/* Sort */}
-            {SORT_OPTIONS.map((opt) => (
-              <button
-                key={opt.value}
-                onClick={() => setSortOrder(opt.value)}
-                className={`text-sm px-3 py-1 rounded-full border transition-colors ${
-                  sortOrder === opt.value
-                    ? 'bg-amber-500 border-amber-500 text-white'
-                    : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
-                }`}
-              >
-                {opt.label}
-              </button>
-            ))}
-            </div>
-            {isFilterActive && (
-              <button
-                onClick={resetFilters}
-                className="text-sm text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors shrink-0"
-              >
-                フィルターをリセット
-              </button>
-            )}
-          </div>
+      <Container component="main" maxWidth="md" sx={{ py: 3 }} hidden={tab !== 'simulator'}>
+        <Stack spacing={4}>
+          {/* Weapon selection */}
+          <Box component="section">
+            <Stack direction="row" sx={{ alignItems: 'baseline', gap: 1.5, mb: 1.5 }}>
+              <Typography variant="h2">
+                武器を選択
+                <Typography component="span" variant="body2" color="text.secondary" sx={{ ml: 1, fontVariantNumeric: 'tabular-nums' }}>
+                  ({selectedWeaponIds.size} 選択中)
+                </Typography>
+              </Typography>
+              {selectedWeaponIds.size > 0 && (
+                <Button size="small" color="error" onClick={clearAll} sx={{ minWidth: 0, px: 1 }}>
+                  武器選択を解除
+                </Button>
+              )}
+            </Stack>
 
-          {/* Rarity filter */}
-          <div className="flex flex-wrap gap-2 mb-2">
-            <button
-              onClick={() => setRarityFilter('all')}
-              className={`text-sm px-3 py-1 rounded-full border transition-colors ${
-                rarityFilter === 'all'
-                  ? 'bg-blue-500 border-blue-500 text-white'
-                  : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
-              }`}
-            >
-              すべて
-            </button>
-            {RARITIES.map((r) => (
-              <button
-                key={r}
-                onClick={() => setRarityFilter(r)}
-                className={`text-sm px-3 py-1 rounded-full border transition-colors ${
-                  rarityFilter === r
-                    ? 'bg-blue-500 border-blue-500 text-white'
-                    : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
-                }`}
-              >
-                {'★'.repeat(r)}
-              </button>
-            ))}
-          </div>
-
-          {/* Divider */}
-          <hr className="border-gray-200 dark:border-gray-700 my-2" />
-
-          {/* Effect accordions */}
-          <div className="space-y-1 mb-4">
-            {EFFECT_ACCORDIONS.map(({ key, label, list }) => {
-              const currentValue = effectValues[key];
-              const setter = effectSetters[key];
-              const isOpen = openAccordions.has(key);
-              const activeEffect = effectMap.get(currentValue as string);
-              return (
-                <div key={key}>
-                  <button
-                    onClick={() => toggleAccordion(key)}
-                    className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors w-full text-left py-1"
-                  >
-                    <span className={`inline-block transition-transform text-xs ${isOpen ? 'rotate-90' : ''}`}>▶</span>
-                    <span>{label}</span>
-                    {currentValue !== 'all' && (
-                      <span className="text-xs px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">
-                        {activeEffect?.name ?? currentValue}
-                      </span>
-                    )}
-                  </button>
-                  {isOpen && (
-                    <div className="flex flex-wrap gap-2 pl-5 pb-2">
-                      <button
-                        onClick={() => setter('all')}
-                        className={`text-sm px-3 py-1 rounded-full border transition-colors ${
-                          currentValue === 'all'
-                            ? 'bg-blue-500 border-blue-500 text-white'
-                            : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
-                        }`}
-                      >
-                        すべて
-                      </button>
-                      {list.map((e) => (
-                        <button
-                          key={e.id}
-                          onClick={() => setter(e.id)}
-                          className={`text-sm px-3 py-1 rounded-full border transition-colors ${
-                            currentValue === e.id
-                              ? 'bg-blue-500 border-blue-500 text-white'
-                              : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
-                          }`}
-                        >
-                          {e.name}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Rarity filter */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            <button
-              onClick={() => setRarityFilter('all')}
-              className={`text-sm px-3 py-1 rounded-full border transition-colors ${
-                rarityFilter === 'all'
-                  ? 'bg-blue-500 border-blue-500 text-white'
-                  : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
-              }`}
-            >
-              すべて
-            </button>
-            {RARITIES.map((r) => (
-              <button
-                key={r}
-                onClick={() => setRarityFilter(r)}
-                className={`text-sm px-3 py-1 rounded-full border transition-colors ${
-                  rarityFilter === r
-                    ? 'bg-blue-500 border-blue-500 text-white'
-                    : 'border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-gray-400'
-                }`}
-              >
-                {'★'.repeat(r)}
-              </button>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {filteredWeapons.map((weapon) => (
-              <WeaponCard
-                key={weapon.id}
-                weapon={weapon}
-                effectMap={effectMap}
-                selected={selectedWeaponIds.has(weapon.id)}
-                coFarmableAreas={coFarmableMap.get(weapon.id)}
-                onToggle={() => toggleWeapon(weapon)}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* Results */}
-        {selectedWeapons.length > 0 && (
-          <section>
-            <h2 className="text-lg font-semibold mb-4">
-              おすすめ厳選エリア
-              <span className="text-sm font-normal text-gray-500 dark:text-gray-400 ml-2">
-                ({selectedWeapons.length} 武器 / スコア順)
-              </span>
-            </h2>
-            {results.length === 0 ? (
-              <p className="text-gray-500 dark:text-gray-400 text-center py-8">
-                一致するエリアが見つかりません
-              </p>
-            ) : (
-              <div className="space-y-3">
-                {results.map((result, i) => (
-                  <AreaResult
-                    key={result.area.id}
-                    result={result}
-                    rank={i + 1}
-                    total={selectedWeapons.length}
-                    effectMap={effectMap}
-                    allWeapons={weapons}
-                    selectedWeaponIds={selectedWeaponIds}
-                    onAddWeapon={(w) => toggleWeapon(w)}
-                  />
+            <Stack spacing={1}>
+              {/* Category filter + sort */}
+              <Stack direction="row" useFlexGap sx={{ flexWrap: 'wrap', alignItems: 'center', gap: 1 }}>
+                {CATEGORIES.map((cat) => (
+                  <FilterChip key={cat} label={cat} selected={categoryFilter === cat} onClick={() => setCategoryFilter(cat)} />
                 ))}
-              </div>
-            )}
-          </section>
-        )}
+                <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
+                {SORT_OPTIONS.map((opt) => (
+                  <FilterChip key={opt.value} label={opt.label} selected={sortOrder === opt.value} onClick={() => setSortOrder(opt.value)} />
+                ))}
+                {isFilterActive && (
+                  <Button size="small" color="error" onClick={resetFilters} sx={{ ml: 'auto', minWidth: 0, px: 1 }}>
+                    フィルターをリセット
+                  </Button>
+                )}
+              </Stack>
 
-        {selectedWeapons.length === 0 && (
-          <div className="text-center py-16 text-gray-400 dark:text-gray-600">
-            <p className="text-4xl mb-3">⚔️</p>
-            <p className="text-lg">厳選したい武器を選択してください</p>
-            <p className="text-sm mt-1">複数選択で同時厳選の最適エリアを計算します</p>
-          </div>
-        )}
-      </main>
+              {/* Rarity filter */}
+              <ChipRow>
+                <FilterChip label="すべて" selected={rarityFilter === 'all'} onClick={() => setRarityFilter('all')} />
+                {RARITIES.map((r) => (
+                  <FilterChip key={r} label={'★'.repeat(r)} selected={rarityFilter === r} onClick={() => setRarityFilter(r)} />
+                ))}
+              </ChipRow>
+            </Stack>
 
-      <footer className="border-t border-gray-200 dark:border-gray-700 mt-12 py-4 text-center text-xs text-gray-400 dark:text-gray-600">
-        ※ このツールはファンメイドです。Hypergryph・Studio Montagne とは無関係です。
-      </footer>
-    </div>
+            <Divider sx={{ my: 1.5 }} />
+
+            {/* Effect accordions */}
+            <Stack sx={{ mb: 2 }}>
+              {EFFECT_ACCORDIONS.map(({ key, label, list }) => {
+                const currentValue = effectValues[key];
+                const setter = effectSetters[key];
+                const isOpen = openAccordions.has(key);
+                const activeEffect = effectMap.get(currentValue as string);
+                return (
+                  <Box key={key}>
+                    <ButtonBase
+                      onClick={() => toggleAccordion(key)}
+                      aria-expanded={isOpen}
+                      sx={{ gap: 1, py: 1, color: 'text.secondary', '&:hover': { color: 'text.primary' }, typography: 'body2' }}
+                    >
+                      <Chevron open={isOpen} />
+                      <span>{label}</span>
+                      {currentValue !== 'all' && <Tag tone="neutral" outlined>{activeEffect?.name ?? currentValue}</Tag>}
+                    </ButtonBase>
+                    {isOpen && (
+                      <Box sx={{ pl: 3, pb: 1 }}>
+                        <ChipRow>
+                          <FilterChip label="すべて" selected={currentValue === 'all'} onClick={() => setter('all')} />
+                          {list.map((e) => (
+                            <FilterChip key={e.id} label={e.name} selected={currentValue === e.id} onClick={() => setter(e.id)} />
+                          ))}
+                        </ChipRow>
+                      </Box>
+                    )}
+                  </Box>
+                );
+              })}
+            </Stack>
+
+            <Box
+              sx={{
+                display: 'grid',
+                gap: 1.5,
+                gridTemplateColumns: { xs: 'minmax(0, 1fr)', sm: 'repeat(2, minmax(0, 1fr))', md: 'repeat(3, minmax(0, 1fr))' },
+              }}
+            >
+              {filteredWeapons.map((weapon) => (
+                <WeaponCard
+                  key={weapon.id}
+                  weapon={weapon}
+                  effectMap={effectMap}
+                  selected={selectedWeaponIds.has(weapon.id)}
+                  coFarmableAreas={coFarmableMap.get(weapon.id)}
+                  onToggle={() => toggleWeapon(weapon)}
+                />
+              ))}
+            </Box>
+          </Box>
+
+          {/* Results */}
+          {selectedWeapons.length > 0 && (
+            <Box component="section">
+              <Typography variant="h2" sx={{ mb: 2 }}>
+                おすすめ厳選エリア
+                <Typography component="span" variant="body2" color="text.secondary" sx={{ ml: 1, fontVariantNumeric: 'tabular-nums' }}>
+                  ({selectedWeapons.length} 武器 / スコア順)
+                </Typography>
+              </Typography>
+              {results.length === 0 ? (
+                <Typography color="text.secondary" sx={{ textAlign: 'center', py: 4 }}>
+                  一致するエリアが見つかりません
+                </Typography>
+              ) : (
+                <Stack spacing={1.5}>
+                  {results.map((result, i) => (
+                    <AreaResult
+                      key={result.area.id}
+                      result={result}
+                      rank={i + 1}
+                      total={selectedWeapons.length}
+                      effectMap={effectMap}
+                      allWeapons={weapons}
+                      selectedWeaponIds={selectedWeaponIds}
+                      onAddWeapon={(w) => toggleWeapon(w)}
+                    />
+                  ))}
+                </Stack>
+              )}
+            </Box>
+          )}
+
+          {selectedWeapons.length === 0 && (
+            <Box sx={{ textAlign: 'center', py: 6, color: 'text.disabled' }}>
+              <Typography sx={{ fontSize: '1.0625rem', fontWeight: 600 }}>厳選したい武器を選択してください</Typography>
+              <Typography variant="body2" sx={{ mt: 0.5 }}>複数選択で同時厳選の最適エリアを計算します</Typography>
+            </Box>
+          )}
+        </Stack>
+      </Container>
+
+      <Box component="footer" sx={{ borderTop: 1, borderColor: 'divider', mt: 6, py: 2, px: 2, textAlign: 'center' }}>
+        <Typography variant="caption" color="text.disabled">
+          ※ このツールはファンメイドです。Hypergryph・Studio Montagne とは無関係です。
+        </Typography>
+      </Box>
+    </Box>
   );
 }

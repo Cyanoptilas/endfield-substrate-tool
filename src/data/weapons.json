@@ -3,7 +3,7 @@
   { "id": "w002", "name": "大願",                   "category": "片手剣",   "rarity": 6, "baseEffect": "agility_up",  "additionalEffect": "atk_up",       "skillEffect": "enchantment" },
   { "id": "w003", "name": "十二問",                 "category": "片手剣",   "rarity": 5, "baseEffect": "agility_up",  "additionalEffect": "atk_up",       "skillEffect": "enchantment" },
   { "id": "w004", "name": "落草",                   "category": "拳銃",     "rarity": 6, "baseEffect": "agility_up",  "additionalEffect": "atk_up",       "skillEffect": "eruption" },
-  { "id": "w005", "name": "OBJ軽刃",               "category": "片手剣",   "rarity": 5, "baseEffect": "agility_up",  "additionalEffect": "atk_up",       "skillEffect": "circulation" },
+  { "id": "w005", "name": "O.B.J.軽刃",             "category": "片手剣",   "rarity": 5, "baseEffect": "agility_up",  "additionalEffect": "atk_up",       "skillEffect": "circulation" },
   { "id": "w006", "name": "緊急設計",               "category": "片手剣",   "rarity": 4, "baseEffect": "agility_up",  "additionalEffect": "phys_dmg",     "skillEffect": "domination" },
   { "id": "w007", "name": "勇猛",                   "category": "長柄武器", "rarity": 6, "baseEffect": "agility_up",  "additionalEffect": "phys_dmg",     "skillEffect": "skillful" },
   { "id": "w008", "name": "鋼鉄余音",               "category": "片手剣",   "rarity": 5, "baseEffect": "agility_up",  "additionalEffect": "phys_dmg",     "skillEffect": "skillful" },
