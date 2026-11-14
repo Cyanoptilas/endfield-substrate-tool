@@ -4,6 +4,7 @@ import type { Weapon } from '../types';
 interface SimulatorState {
   selectedWeaponIds: Set<string>;
   toggleWeapon: (weapon: Weapon) => void;
+  selectWeapons: (ids: string[]) => void;
   clearAll: () => void;
 }
 
@@ -19,5 +20,6 @@ export const useSimulatorStore = create<SimulatorState>((set) => ({
       }
       return { selectedWeaponIds: next };
     }),
+  selectWeapons: (ids) => set({ selectedWeaponIds: new Set(ids) }),
   clearAll: () => set({ selectedWeaponIds: new Set() }),
 }));

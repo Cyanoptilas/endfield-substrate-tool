@@ -5,15 +5,33 @@ import { sortWeapons } from './lib/sorting';
 import type { SortOrder } from './lib/sorting';
 import { WeaponCard } from './components/WeaponCard';
 import { AreaResult } from './components/AreaResult';
-import type { Weapon, Area, Effect } from './types';
+import { TeamsTab } from './components/TeamsTab';
+import type { Weapon, Area, Effect, MainCharacter, CharacterGear, GearSet } from './types';
 
 import weaponsData from './data/weapons.json';
 import areasData from './data/areas.json';
 import effectsData from './data/effects.json';
+import teamsData from './data/teams.json';
+import gearBuildsData from './data/gearBuilds.json';
+import gearSetsData from './data/gearSets.json';
 
 const weapons = weaponsData as Weapon[];
 const areas = areasData as Area[];
 const effects = effectsData as Effect[];
+const characters = teamsData as MainCharacter[];
+
+const weaponMap = new Map(weapons.map((w) => [w.id, w]));
+const gearMap = new Map((gearBuildsData as CharacterGear[]).map((g) => [g.character, g]));
+const gearSetMap = new Map((gearSetsData as GearSet[]).map((s) => [s.name, s]));
+
+type Tab = 'simulator' | 'teams';
+
+const TABS: { value: Tab; label: string; description: string }[] = [
+  { value: 'simulator', label: '基質シミュレーター', description: '武器を複数選択 → 同時厳選に最適なエリアをスコア順で表示' },
+  { value: 'teams',     label: 'おすすめ編成',       description: 'メインキャラ別のおすすめ編成と装備（攻略サイトの比較）' },
+];
+
+const tabFromHash = (): Tab => (window.location.hash === '#teams' ? 'teams' : 'simulator');
 
 const CATEGORIES = ['すべて', ...Array.from(new Set(weapons.map((w) => w.category)))];
 const RARITIES = [6, 5, 4];
@@ -31,7 +49,8 @@ const EFFECT_ACCORDIONS = [
 ] as const;
 
 export default function App() {
-  const { selectedWeaponIds, toggleWeapon, clearAll } = useSimulatorStore();
+  const { selectedWeaponIds, toggleWeapon, selectWeapons, clearAll } = useSimulatorStore();
+  const [tab, setTab] = useState<Tab>(tabFromHash);
   const [categoryFilter, setCategoryFilter] = useState('すべて');
   const [rarityFilter, setRarityFilter] = useState<number | 'all'>('all');
   const [sortOrder, setSortOrder] = useState<SortOrder>('default');
@@ -61,6 +80,21 @@ export default function App() {
     setBaseFilter('all');
     setAdditionalFilter('all');
     setSkillFilter('all');
+  };
+
+  const changeTab = (next: Tab) => {
+    setTab(next);
+    const url = window.location.pathname + window.location.search + (next === 'teams' ? '#teams' : '');
+    window.history.replaceState(null, '', url);
+  };
+
+  // 編成タブの武器をまとめて選択し、シミュレーターに切り替える。
+  // 武器フィルターが掛かっていると選んだ武器が一覧に出ないので解除しておく
+  const applyTeamWeapons = (weaponIds: string[]) => {
+    selectWeapons(weaponIds);
+    resetFilters();
+    changeTab('simulator');
+    window.scrollTo({ top: 0 });
   };
 
   const effectSetters: Record<string, (v: string | 'all') => void> = {
@@ -113,12 +147,40 @@ export default function App() {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-xl font-bold">エンドフィールド 基質厳選シミュレーター</h1>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            武器を複数選択 → 同時厳選に最適なエリアをスコア順で表示
+            {TABS.find((t) => t.value === tab)?.description}
           </p>
+          <nav className="flex gap-1 mt-3 -mb-4" role="tablist">
+            {TABS.map((t) => (
+              <button
+                key={t.value}
+                role="tab"
+                aria-selected={tab === t.value}
+                onClick={() => changeTab(t.value)}
+                className={`text-sm px-4 py-2 border-b-2 transition-colors ${
+                  tab === t.value
+                    ? 'border-blue-500 text-blue-600 dark:text-blue-400 font-semibold'
+                    : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </nav>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-6 space-y-8">
+      <main className="max-w-4xl mx-auto px-4 py-6" hidden={tab !== 'teams'}>
+        <TeamsTab
+          characters={characters}
+          weaponMap={weaponMap}
+          effectMap={effectMap}
+          gearMap={gearMap}
+          gearSetMap={gearSetMap}
+          onUseTeamWeapons={applyTeamWeapons}
+        />
+      </main>
+
+      <main className="max-w-4xl mx-auto px-4 py-6 space-y-8" hidden={tab !== 'simulator'}>
         {/* Weapon selection */}
         <section>
           <div className="flex items-center mb-3">
